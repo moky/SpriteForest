@@ -74,13 +74,13 @@
 			return false;
 		}
 		var ccAction = action.ccAction();
-		if (!ccAction) {
-			cn.error(action);
-			return;
+		if (ccAction instanceof cc.Action) {
+			// run action
+			node.runAction(ccAction);
+			return true;
 		}
-		// run action
-		node.runAction(ccAction);
-		return true;
+		cn.error(action);
+		return false;
 	}
 	
 	function doEvent(eventName, node) {

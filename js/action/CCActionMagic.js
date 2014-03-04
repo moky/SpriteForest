@@ -134,19 +134,27 @@
 	// static
 	cc.ActionMagic.create = create;
 	
-	//==========================================================================
+}(SpriteForest);
+
+//==========================================================================
+
+!function(sf) {
+	'use strict';
+	var cc = sf.cc;
+	var cn = sf.cn;
 	
 	function MagicBuilder(name, execute) {
 		
 		var prop = {
-			ctor: ActionMagic,
+			ctor: cc.ActionMagic.prototype.ctor,
 			execute: execute,
-		}
+		};
 		
-		var Class = cc.ActionMagic.extend(prop);
-		Class.create = create;
+		var ccClass = cc.ActionMagic.extend(prop);
+		ccClass.create = cc.ActionMagic.create;
 		
-		cc['Action' + name] = Class;
+		cc['Action' + name] = ccClass;
+		return ccClass;
 	}
 	
 	// Audio
@@ -156,5 +164,19 @@
 		}
 	}
 	MagicBuilder('Audio', executeAudio);
+	
+	// Video
+	
+	// Particle
+	
+	// Web
+	
+	// Alert
+	
+	// AddChild
+	
+	// RemoveFromParent
+	
+	// StopAllActions
 	
 }(SpriteForest);

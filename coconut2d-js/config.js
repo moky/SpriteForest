@@ -20,6 +20,8 @@ var Coconut2D = Coconut2D || {};
 			'controller/CNTouchController.js',
 			// extensions
 			'extension/CNSpriteFrameCache.js',
+			// action
+			'action/CCMask.js',
 		],
 		getFiles: function(files, root) {
 			// files
@@ -44,4 +46,4 @@ var Coconut2D = Coconut2D || {};
 		}
 	};
 	
-} (Coconut2D);
+}(Coconut2D);

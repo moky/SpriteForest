@@ -48,4 +48,4 @@ Coconut2D.cc = Cocos2D;
 		return this instanceof superClass;
 	}
 	
-} (Coconut2D);
+}(Coconut2D);

@@ -114,13 +114,12 @@
 	function setAttributes(dict, node) {
 		node = node || this;
 		if (typeof dict !== 'object') {
-			cn.error(dict);
+			cn.error(dict, node);
 			return false;
 		}
 		
 		// size
 		//if (CCSize::CCSizeEqualToSize(pNode->getContentSize(), CCSizeZero))
-		if (true)
 		{
 			var size = dict['Size'];
 			if (size) {

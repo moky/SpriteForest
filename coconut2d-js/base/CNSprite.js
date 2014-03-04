@@ -97,7 +97,7 @@
 	}
 	
 	function replaceImageWithFile(filename) {
-		cn.log('image filename: ' + filename);
+		
 		var textureCache = cc.TextureCache.getInstance();
 		var frameCache = cc.SpriteFrameCache.getInstance();
 		

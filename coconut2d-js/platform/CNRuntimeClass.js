@@ -70,4 +70,4 @@
 	
 	cn.classFromString = classFromString;
 	
-} (Coconut2D);
+}(Coconut2D);

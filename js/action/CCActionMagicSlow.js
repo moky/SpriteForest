@@ -61,22 +61,36 @@
 	cc.ActionMagicSlow.showIndicator = showIndicator;
 	cc.ActionMagicSlow.hideIndicator = hideIndicator;
 	
-	//==========================================================================
+}(SpriteForest);
+
+//==============================================================================
+
+!function(sf) {
+	'use strict';
+	var cc = sf.cc;
+	var cn = sf.cn;
 	
 	function MagicBuilder(name, execute) {
 		
 		var prop = {
-			ctor: ActionMagicSlow,
+			ctor: cc.ActionMagicSlow.prototype.ctor,
 			execute: execute,
-		}
+		};
 		
-		var Class = cc.ActionMagicSlow.extend(prop);
-		Class.create = cc.ActionMagicSlow.create;
-		Class.showIndicator = showIndicator;
-		Class.hideIndicator = hideIndicator;
+		var ccClass = cc.ActionMagicSlow.extend(prop);
+		ccClass.create = cc.ActionMagicSlow.create;
+		ccClass.showIndicator = cc.ActionMagicSlow.showIndicator;
+		ccClass.hideIndicator = cc.ActionMagicSlow.hideIndicator;
 		
-		cc['Action' + name] = Class;
+		cc['Action' + name] = ccClass;
+		return ccClass;
 	}
+	
+	// LoadingIndicator
+	function executeLoadingIndicator() {
+		// do nothing
+	}
+	MagicBuilder('LoadingIndicator', executeLoadingIndicator);
 	
 	function performForestWithDictonary(dict) {
 		var myLord = sf.Lord.getInstance();

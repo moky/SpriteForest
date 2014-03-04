@@ -32,4 +32,4 @@ SpriteForest.cn = Coconut2D;
 	
 	cn.version = 'SpriteForest v1.0.0';
 	
-} (SpriteForest);
+}(SpriteForest);

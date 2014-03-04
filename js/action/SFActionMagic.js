@@ -32,16 +32,6 @@
 	//
 	//  static functions
 	//
-	function create() {
-		var action = new this();
-		var flag = false;
-		if (arguments.length < 1) {
-			flag = action.init();
-		} else {
-			flag = action.initWithDictionary(arguments[0]);
-		}
-		return flag ? action : null;
-	}
 	
 	//
 	//  instance functions
@@ -80,32 +70,44 @@
 	// extends
 	sf.ActionMagic = sf.Action.extend(prop);
 	
-	// static
-	sf.ActionMagic.create = create;
-	
-	//==========================================================================
+}(SpriteForest);
+
+//==============================================================================
+
+!function(sf) {
+	'use strict';
+	var cc = sf.cc;
+	var cn = sf.cn;
 	
 	function MagicBuilder(name) {
 		
 		function ccAction() {
-			var Class = cn.classFromString('CCAction' + name);
-			return Class ? Class.create(this._dict) : null;
+			var ccClass = cn.classFromString('CCAction' + name);
+			return ccClass ? ccClass.create(this._dict) : null;
 		}
 		
 		var prop = {
-			ctor: ActionMagic,
+			ctor: sf.ActionMagic.prototype.ctor,
 			ccAction: ccAction,
 		}
 		
-		var Class = sf.ActionMagic.extend(prop);
-		Class.create = create;
+		var sfClass = sf.ActionMagic.extend(prop);
 		
-		sf['Action' + name] = Class;
+		sf['Action' + name] = sfClass;
+		return sfClass;
 	}
 	
 	// magic
 	MagicBuilder('Audio');
+	MagicBuilder('Video');
+	MagicBuilder('Particle');
+	MagicBuilder('Web');
+	MagicBuilder('Alert');
+	MagicBuilder('AddChild');
+	MagicBuilder('RemoveFromParent');
+	MagicBuilder('StopAllActions');
 	// magic slow
+	MagicBuilder('LoadingIndicator');
 	MagicBuilder('Forest');
 	MagicBuilder('Scene');
 	
