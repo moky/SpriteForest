@@ -5,7 +5,7 @@ var Coconut2D = Coconut2D || {};
 	'use strict';
 	
 	cn.config = {
-		dir: '/~Moky/GitHub/SpriteForest/coconut2d-js/',
+		root: '/~Moky/GitHub/SpriteForest/coconut2d-js/',
 		files: [
 			'coconut2d.js',
 			// platform
@@ -21,13 +21,19 @@ var Coconut2D = Coconut2D || {};
 			// extensions
 			'extension/CNSpriteFrameCache.js',
 		],
-		getFiles: function() {
+		getFiles: function(files, root) {
+			var files = arguments.length > 0 ? files : this.files;
+			var dir = arguments.length > 0 ? root : this.root;
+			if (!dir || !files) {
+				return files;
+			} else if (dir.charAt(dir.length - 1) != '/') {
+				dir += '/';
+			}
 			var array = [];
-			var dir = this.dir;
-			var files = this.files;
-			files.forEach(function(e, i) {
-				array.push(dir + e);
-			});
+			var len = files.length;
+			for (var i = 0; i < len; ++i) {
+				array.push(dir + files[i]);
+			}
 			return array;
 		}
 	};
