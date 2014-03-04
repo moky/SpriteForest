@@ -39,7 +39,7 @@
 	};
 	
 	function blink() {
-		return cc.Blink.create(this._duration, this._angle);
+		return cc.Blink.create(this._duration, this._times);
 	}
 	
 	prop.ccAction = blink;

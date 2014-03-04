@@ -35,7 +35,7 @@
 		ctor: sf.ActionInterval.prototype.ctor,
 		initWithDictionary: initWithDictionary,
 		// properties
-		_angle: null,
+		_angle: 0,
 	};
 	
 	function rotateTo() {
