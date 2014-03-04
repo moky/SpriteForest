@@ -27,11 +27,7 @@
 		if (!sf.ActionInterval.prototype.initWithDictionary.call(this, dict)) {
 			return false;
 		}
-		var angle = dict['Angle'];
-		if (angle === undefined) {
-			angle = dict['Rotation'];
-		}
-		this._angle = angle;
+		this._angle = dict['Angle'] || dict['Rotation'];
 		return true;
 	}
 	
@@ -173,7 +169,7 @@
 	};
 	
 	function skewTo() {
-		return cc.SlewTo.create(this._duration, this._skewX, this._skewY);
+		return cc.SkewTo.create(this._duration, this._skewX, this._skewY);
 	}
 	function skewBy() {
 		return cc.SkewBy.create(this._duration, this._skewX, this._skewY);

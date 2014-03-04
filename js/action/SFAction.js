@@ -217,10 +217,7 @@
 		if (!sf.Action.prototype.initWithDictionary.call(this, dict)) {
 			return false;
 		}
-		var duration = dict['Duration'];
-		if (duration !== undefined) {
-			this._duration = duration;
-		}
+		this._duration = dict['Duration'];
 		return true;
 	}
 	
