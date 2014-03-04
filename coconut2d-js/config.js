@@ -22,13 +22,19 @@ var Coconut2D = Coconut2D || {};
 			'extension/CNSpriteFrameCache.js',
 		],
 		getFiles: function(files, root) {
+			// files
 			var files = arguments.length > 0 ? files : this.files;
+			if (!files) {
+				return [];
+			}
+			// base dir
 			var dir = arguments.length > 0 ? root : this.root;
-			if (!dir || !files) {
+			if (!dir) {
 				return files;
 			} else if (dir.charAt(dir.length - 1) != '/') {
 				dir += '/';
 			}
+			// out
 			var array = [];
 			var len = files.length;
 			for (var i = 0; i < len; ++i) {
