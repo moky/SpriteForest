@@ -432,11 +432,9 @@
 	}
 	
 	function createAnimation(frames, delayTime) {
-		var frameCache = cc.SpriteFrameCache.getInstance();
 		
 		var spriteFrames = [];
 		var frame, file;
-		var pos;
 		for (var i = 0; i < frames.length; ++i) {
 			file = frames[i];
 			if (!file) {
@@ -451,20 +449,11 @@
 				continue;
 			}
 			
-			// try full path
-			frame = frameCache.getSpriteFrame(file);
-			if (!frame) {
-				pos = file.lastIndexOf('/');
-				if (pos >= 0) {
-					// try file name
-					frame = frameCache.getSpriteFrame(file.substring(pos + 1));
-				}
-			}
-			
-			if (frame instanceof cc.SpriteFrame) {
+			frame = cn.Sprite.getSpriteFrameWithFile(file);
+			if (frame) {
 				spriteFrames.push(frame);
 			} else {
-				cn.error(name, frame, frames[i]);
+				cn.error(file, frame, frames[i]);
 			}
 		}
 		

@@ -96,58 +96,78 @@
 		return image;
 	}
 	
-	function replaceImageWithFile(filename) {
-		
+	function getSpriteFrameWithFile(filename) {
+		//
+		//  try texture cache
+		//
 		var textureCache = cc.TextureCache.getInstance();
+		
+		var texture = textureCache.textureForKey(filename);
+		if (texture) {
+			var size = texture.getContentSize();
+			var rect = cc.rect(0, 0, size.width, size.height);
+			return cc.SpriteFrame.createWithTexture(texture, rect);
+		}
+		
+		//
+		//  try sprite frame cache
+		//
 		var frameCache = cc.SpriteFrameCache.getInstance();
 		
-		var texture;
-		var rect = cc.RectZero();
-		var rotated = false;
+		// try full path
+		var frame = frameCache.getSpriteFrame(filename);
+		if (frame) {
+			return frame;
+		}
 		
-		// get from texture cache
-		texture = textureCache.textureForKey(filename);
-		
-		// get from frame cache
-		if (!texture) {
-			var pos = filename.lastIndexOf('/');
-			var name = pos < 0 ? filename : filename.substring(pos + 1);
-			
-			var spriteFrame = frameCache.getSpriteFrame(name);
-			if (spriteFrame) {
-				texture = spriteFrame.getTexture();
-				rect = spriteFrame.getRect();
-				rotated = spriteFrame.isRotated();
+		var pos = filename.lastIndexOf('/');
+		if (pos >= 0) {
+			// try file name
+			frame = frameCache.getSpriteFrame(filename.substring(pos + 1));
+			if (frame) {
+				return frame;
 			}
 		}
 		
-		// get from file
+		//
+		//  try file
+		//
+		var fileUtils = cc.FileUtils.getInstance();
+		
+		// set not pop-up message box when load image failed
+		var bNotify = fileUtils.isPopupNotify();
+		fileUtils.setPopupNotify(false);
+		
+		texture = textureCache.addImage(filename);
 		if (!texture) {
-			// set not pop-up message box when load image failed
-			var fileUtils = cc.FileUtils.getInstance();
-			var bNotify = fileUtils.isPopupNotify();
-			fileUtils.setPopupNotify(false);
-			
-			texture = textureCache.addImage(filename);
-			if (!texture) {
-				var image = this.getImageWithFile(filename);
-				if (image) {
-					texture = textureCache.addUIImage(image, filename);
-				}
+			var image = getImageWithFile(filename);
+			if (image) {
+				texture = textureCache.addUIImage(image, filename);
 			}
-			
-			// reset the value of UIImage notify
-			fileUtils.setPopupNotify(bNotify);
 		}
 		
-		if (!texture) {
-			cn.error('failed to load texture: ' + filename);
+		// reset the value of UIImage notify
+		fileUtils.setPopupNotify(bNotify);
+		
+		// got it
+		if (texture) {
+			var size = texture.getContentSize();
+			var rect = cc.rect(0, 0, size.width, size.height);
+			return cc.SpriteFrame.createWithTexture(texture, rect);
+		}
+		
+		return null;
+	}
+	
+	function replaceImageWithFile(filename) {
+		var spriteFrame = getSpriteFrameWithFile(filename);
+		
+		if (!spriteFrame) {
+			cn.error('failed to load sprite texture: ' + filename);
 		} else {
-			if (cc.rectEqualToRect(rect, cc.RectZero())) {
-				var size = texture.getContentSize();
-				rect.setWidth(size.width);
-				rect.setHeight(size.height);
-			}
+			var texture = spriteFrame.getTexture();
+			var rect = spriteFrame.getRect();
+			var rotated = spriteFrame.isRotated();
 			this.initWithTexture(texture, rect, rotated);
 		}
 	}
@@ -173,6 +193,7 @@
 	cn.Sprite.create = create;
 	cn.Sprite.createSprites = createSprites;
 	cn.Sprite.getImageWithFile = getImageWithFile;
+	cn.Sprite.getSpriteFrameWithFile = getSpriteFrameWithFile;
 	
 	// CNNode Extensions
 	cn.Node.extensions(cn.Sprite);
