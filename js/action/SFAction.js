@@ -341,10 +341,15 @@
 		var action = sf.Action.subActionFromDictionary(dict);
 		if (action instanceof cc.ActionInterval) {
 			this._action = action;
-			return true;
+		} else {
+			cn.error(dict);
+			return false;
 		}
-		cn.error(dict);
-		return false;
+		
+		var rate = dict['Rate'];
+		this._rate = rate;
+		
+		return true;
 	}
 	
 	function ccAction() {

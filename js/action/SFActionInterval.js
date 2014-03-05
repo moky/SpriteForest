@@ -292,7 +292,7 @@
 	//  instance functions
 	//
 	function ccAction() {
-		return cc.DelayTime.create(this._action);
+		return cc.DelayTime.create(this._duration);
 	}
 	
 	var prop = {

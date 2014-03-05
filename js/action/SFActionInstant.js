@@ -56,7 +56,7 @@
 	function MagicBuilder(name) {
 		
 		function ccAction() {
-			var ccClass = cn.classFromString('CCAction' + name);
+			var ccClass = cc[name];
 			return ccClass ? ccClass.create() : null;
 		}
 		
