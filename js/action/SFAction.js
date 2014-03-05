@@ -33,32 +33,36 @@
 	//
 	//  static functions
 	//
+	function actionClass(name) {
+		var Class;
+		
+		Class = cn.classFromString('SFAction' + name);
+		if (Class) {
+			return Class;
+		}
+		
+		Class = cn.classFromString('SF' + name);
+		if (Class) {
+			return Class;
+		}
+		
+		Class = cn.classFromString('SFActionMagic' + name);
+		if (Class) {
+			return Class;
+		}
+		
+		return null;
+	}
+	
 	function create(dict) {
-		var name = dict['Name'];
-		
-		var className, Class, action;
-		
-		className = 'SFAction' + name;
-		Class = cn.classFromString(className);
+		var Class = actionClass(dict['Name']);
 		if (Class) {
-			action = new Class();
-			return action.initWithDictionary(dict) ? action : null;
+			var action = new Class();
+			if (action.initWithDictionary(dict)) {
+				return action;
+			}
 		}
-		
-		className = 'SF' + name;
-		Class = cn.classFromString(className);
-		if (Class) {
-			action = new Class();
-			return action.initWithDictionary(dict) ? action : null;
-		}
-		
-		className = 'SFActionMagic' + name;
-		Class = cn.classFromString(className);
-		if (Class) {
-			action = new Class();
-			return action.initWithDictionary(dict) ? action : null;
-		}
-		
+		cn.error(dict);
 		return null;
 	}
 	
