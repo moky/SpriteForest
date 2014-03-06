@@ -46,9 +46,15 @@
 			cn.error(this);
 			return false;
 		}
+		
+		// clean up caches
+		cc.SpriteFrameCache.getInstance().removeSpriteFrames(); // removeUnusedSpriteFrames
+		//cc.TextureCache.getInstance().removeAllTextures(); // removeUnusedTextures
+		
 		this.setAnchorPoint(cc.PointZero());
 		this._touchNodes = {};
 		this._allClaimedKeys = [];
+		
 		return true;
 	}
 	
