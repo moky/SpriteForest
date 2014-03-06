@@ -89,7 +89,7 @@
 		var prop = {
 			ctor: sf.ActionMagic.prototype.ctor,
 			ccAction: ccAction,
-		}
+		};
 		
 		var sfClass = sf.ActionMagic.extend(prop);
 		

@@ -41,11 +41,11 @@ Coconut2D.cc = Cocos2D;
 		} else {
 			cc._logToWebPage(message);
 		}
-	}
+	};
 	
 	// isKindOfClass
 	cc.Class.prototype.isKindOfClass = function(superClass) {
 		return this instanceof superClass;
-	}
+	};
 	
 }(Coconut2D);

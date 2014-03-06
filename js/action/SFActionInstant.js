@@ -63,7 +63,7 @@
 		var prop = {
 			ctor: sf.ActionInstant.prototype.ctor,
 			ccAction: ccAction,
-		}
+		};
 		
 		var sfClass = sf.ActionInstant.extend(prop);
 		
