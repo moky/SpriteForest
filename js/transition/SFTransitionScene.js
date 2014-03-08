@@ -81,6 +81,12 @@
 		if (type < 1 || type > 3) {
 			type = 0;
 		}
+		
+		if (type === 3 && typeof(gl.createFramebuffer) !== 'function') {
+			// doesn't support 3d transition
+			return null;
+		}
+		
 		var array = _names[type];
 		for (var i = 0; i < array.length; ++i) {
 			var name = array[i];
