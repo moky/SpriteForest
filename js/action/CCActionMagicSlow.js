@@ -24,21 +24,21 @@
 	//
 	//  constructor
 	//
-	function ActionMagicSlow() {
+	var ActionMagicSlow = function() {
 		cc.ActionMagic.prototype.ctor.call(this);
-	}
+	};
 	
 	//
 	//  static functions
 	//
 	
-	function showIndicator() {
+	var showIndicator = function() {
 		
-	}
+	};
 	
-	function hideIndicator() {
+	var hideIndicator = function() {
 		
-	}
+	};
 	
 	//
 	//  instance functions
@@ -70,7 +70,7 @@
 	var cc = sf.cc;
 	var cn = sf.cn;
 	
-	function MagicBuilder(name, execute) {
+	var MagicBuilder = function(name, execute) {
 		
 		var prop = {
 			ctor: cc.ActionMagicSlow.prototype.ctor,
@@ -84,15 +84,15 @@
 		
 		cc['Action' + name] = ccClass;
 		return ccClass;
-	}
+	};
 	
 	// LoadingIndicator
-	function executeLoadingIndicator() {
+	var executeLoadingIndicator = function() {
 		// do nothing
-	}
+	};
 	MagicBuilder('LoadingIndicator', executeLoadingIndicator);
 	
-	function performForestWithDictonary(dict) {
+	var performForestWithDictonary = function(dict) {
 		var myLord = sf.Lord.getInstance();
 		var history = dict['History'];
 		if (history) {
@@ -129,20 +129,20 @@
 		} else {
 			cn.error(dict);
 		}
-	}
+	};
 	
 	// Forest
-	function executeForest() {
+	var executeForest = function() {
 		performForestWithDictonary(this._dict);
-	}
+	};
 	MagicBuilder('Forest', executeForest);
 	
 	// Scene
-	function executeScene() {
+	var executeScene = function() {
 		// this is a 'Scene' action info, transform it to a 'Forest' action
 		var dict = { 'Scene' : this._dict };
 		performForestWithDictonary(dict);
-	}
+	};
 	MagicBuilder('Scene', executeScene);
 	
 }(SpriteForest);

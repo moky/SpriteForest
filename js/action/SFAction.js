@@ -26,14 +26,14 @@
 	//
 	//  constructor
 	//
-	function Action() {
+	var Action = function() {
 		
-	}
+	};
 	
 	//
 	//  static functions
 	//
-	function actionClass(name) {
+	var actionClass = function(name) {
 		var Class;
 		
 		Class = cn.classFromString('SFAction' + name);
@@ -52,9 +52,9 @@
 		}
 		
 		return null;
-	}
+	};
 	
-	function create(dict) {
+	var create = function(dict) {
 		var Class = actionClass(dict['Name']);
 		if (Class) {
 			var action = new Class();
@@ -64,27 +64,27 @@
 		}
 		cn.error(dict);
 		return null;
-	}
+	};
 	
 	//
 	//  instance functions
 	//
-	function init() {
+	var init = function() {
 		return true;
-	}
-	function initWithDictionary(dict) {
+	};
+	var initWithDictionary = function(dict) {
 		if (!this.init()) {
 			return false;
 		}
 		return dict != null;
-	}
+	};
 	
-	function ccAction() {
+	var ccAction = function() {
 		cn.error('override me!');
 		return null;
-	}
+	};
 	
-	function actionByReplaceTarget(target, dict) {
+	var actionByReplaceTarget = function(target, dict) {
 		if (!target || !dict) {
 			cn.error(target, dict);
 			return null;
@@ -113,9 +113,9 @@
 		
 		var action = sf.Action.create(dict);
 		return action ? action.ccAction() : null;
-	}
+	};
 	
-	function subActionFromDictionary(dict) {
+	var subActionFromDictionary = function(dict) {
 		var action = dict['Action'];
 		if (!action) {
 			cn.error(dict);
@@ -133,9 +133,9 @@
 		}
 		
 		return action instanceof cc.Action ? action : null;
-	}
+	};
 	
-	function subActionsFromDictionary(dict) {
+	var subActionsFromDictionary = function(dict) {
 		var actions = dict['Actions'];
 		if (!actions) {
 			cn.error(dict);
@@ -165,7 +165,7 @@
 			}
 		}
 		return arr;
-	}
+	};
 	
 	var prop = {
 		ctor: Action,
@@ -198,10 +198,10 @@
 	//
 	//  constructor
 	//
-	function FiniteTimeAction() {
+	var FiniteTimeAction = function() {
 		sf.Action.prototype.ctor.call(this);
 		this._duration = 0;
-	}
+	};
 	
 	//
 	//  static functions
@@ -210,20 +210,20 @@
 	//
 	//  instance functions
 	//
-	function init() {
+	var init = function() {
 		if (!sf.Action.prototype.init.call(this)) {
 			return false;
 		}
 		this._duration = 0;
 		return true;
-	}
-	function initWithDictionary(dict) {
+	};
+	var initWithDictionary = function(dict) {
 		if (!sf.Action.prototype.initWithDictionary.call(this, dict)) {
 			return false;
 		}
 		this._duration = dict['Duration'];
 		return true;
-	}
+	};
 	
 	var prop = {
 		ctor: FiniteTimeAction,
@@ -250,10 +250,10 @@
 	//
 	//  constructor
 	//
-	function RepeatForever() {
+	var RepeatForever = function() {
 		sf.Action.prototype.ctor.call(this);
 		this._action = null;
-	}
+	};
 	
 	//
 	//  static functions
@@ -262,14 +262,14 @@
 	//
 	//  instance functions
 	//
-	function init() {
+	var init = function() {
 		if (!sf.Action.prototype.init.call(this)) {
 			return false;
 		}
 		this._action = null;
 		return true;
-	}
-	function initWithDictionary(dict) {
+	};
+	var initWithDictionary = function(dict) {
 		if (!sf.Action.prototype.initWithDictionary.call(this, dict)) {
 			return false;
 		}
@@ -280,11 +280,11 @@
 		}
 		cn.error(dict, action);
 		return false;
-	}
+	};
 	
-	function ccAction() {
+	var ccAction = function() {
 		return this._action ? cc.RepeatForever.create(this._action) : null;
-	}
+	};
 	
 	var prop = {
 		ctor: RepeatForever,
@@ -313,11 +313,11 @@
 	//
 	//  constructor
 	//
-	function Speed() {
+	var Speed = function() {
 		sf.Action.prototype.ctor.call(this);
 		this._action = null;
 		this._rate = 0;
-	}
+	};
 	
 	//
 	//  static functions
@@ -326,15 +326,15 @@
 	//
 	//  instance functions
 	//
-	function init() {
+	var init = function() {
 		if (!sf.Action.prototype.init.call(this)) {
 			return false;
 		}
 		this._action = null;
 		this._rate = 0;
 		return true;
-	}
-	function initWithDictionary(dict) {
+	};
+	var initWithDictionary = function(dict) {
 		if (!sf.Action.prototype.initWithDictionary.call(this, dict)) {
 			return false;
 		}
@@ -350,11 +350,11 @@
 		this._rate = rate;
 		
 		return true;
-	}
+	};
 	
-	function ccAction() {
+	var ccAction = function() {
 		return this._action ? cc.Speed.create(this._action, this._rate) : null;
-	}
+	};
 	
 	var prop = {
 		ctor: Speed,
@@ -384,12 +384,12 @@
 	//
 	//  constructor
 	//
-	function Follow() {
+	var Follow = function() {
 		sf.Action.prototype.ctor.call(this);
 		this._target = null;
 		this._followedNode = null;
 		this._rect = null;
-	}
+	};
 	
 	//
 	//  static functions
@@ -398,7 +398,7 @@
 	//
 	//  instance functions
 	//
-	function init() {
+	var init = function() {
 		if (!sf.Action.prototype.init.call(this)) {
 			return false;
 		}
@@ -406,8 +406,8 @@
 		this._followedNode = null;
 		this._rect = cc.RectZero();
 		return true;
-	}
-	function initWithDictionary(dict) {
+	};
+	var initWithDictionary = function(dict) {
 		if (!sf.Action.prototype.initWithDictionary.call(this, dict)) {
 			return false;
 		}
@@ -425,9 +425,9 @@
 		}
 		
 		return true;
-	}
+	};
 	
-	function ccAction() {
+	var ccAction = function() {
 		// check followed node
 		if (typeof this._followedNode === 'string') {
 			if (this._target instanceof cc.Node) {
@@ -441,7 +441,7 @@
 		
 		cn.error('invalid followed node');
 		return null;
-	}
+	};
 	
 	var prop = {
 		ctor: Follow,

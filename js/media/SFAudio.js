@@ -24,14 +24,14 @@
 	//
 	//  constructor
 	//
-	function Audio() {
-	}
+	var Audio = function() {
+	};
 	
 	//
 	//  static functions
 	//
 	
-	function perform(dict) {
+	var perform = function(dict) {
 		var filename = dict['File'];
 		var task = dict['Task'];
 		if (!task) {
@@ -66,15 +66,15 @@
 		}
 		
 		return true;
-	}
+	};
 	
-	function stopAll() {
+	var stopAll = function() {
 		var engine = cc.AudioEngine.getInstance();
 		if (engine.isBackgroundMusicPlaying()) {
 			engine.stopBackgroundMusic();
 		}
 		engine.stopAllEffects();
-	}
+	};
 	
 	//
 	//  instance functions

@@ -24,25 +24,25 @@
 	//
 	//  constructor
 	//
-	function TransitionScene() {
+	var TransitionScene = function() {
 		this._name = null;
 		this._scene = null;
 		this._duration = 0;
 		this._orientation = 0;
 		this._color = null;
 		this._reverse = false;
-	}
+	};
 	
 	//
 	//  static functions
 	//
-	function create(dict) {
+	var create = function(dict) {
 		var trans = new sf.TransitionScene();
 		if (trans.initWithDictionary(dict)) {
 			return trans;
 		}
 		return null;
-	}
+	};
 	
 	//--------------------------------------------------------------------------
 	var _names = [
@@ -77,7 +77,7 @@
 		'PageTurn',
 	];
 	
-	function switchTrans(p, type) {
+	var switchTrans = function(p, type) {
 		if (type < 1 || type > 3) {
 			type = 0;
 		}
@@ -113,11 +113,11 @@
 			}
 		}
 		return null;
-	}
+	};
 	
 	//--------------------------------------------------------------------------
 	
-	function scene(dict) {
+	var scene = function(dict) {
 		var transition = sf.TransitionScene.create(dict);
 		if (!transition) {
 			cn.error(dict);
@@ -135,12 +135,12 @@
 		
 		cn.log('unrecognized transition name');
 		return transition._scene;
-	}
+	};
 	
 	//
 	//  instance functions
 	//
-	function init() {
+	var init = function() {
 		this._name = null;
 		this._scene = null;
 		this._duration = 0;
@@ -148,8 +148,8 @@
 		this._color = cc.c3b(255, 255, 255);
 		this._reverse = false;
 		return true;
-	}
-	function initWithDictionary(dict) {
+	};
+	var initWithDictionary = function(dict) {
 		if (!this.init()) {
 			return false;
 		}
@@ -203,14 +203,14 @@
 		this._reverse = reverse || false;
 		
 		return true;
-	}
+	};
 	
-	function isNamed(name) {
+	var isNamed = function(name) {
 		if (!name || !this._name) {
 			return false;
 		}
 		return this._name === name;
-	}
+	};
 	
 	//--------------------------------------------------------------------------
 	

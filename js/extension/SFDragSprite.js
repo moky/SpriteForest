@@ -24,9 +24,9 @@
 	//
 	//  constructor
 	//
-	function DragSprite() {
+	var DragSprite = function() {
 		sf.TouchSprite.prototype.ctor.call(this);
-	}
+	};
 	
 	//
 	//  static functions
@@ -35,26 +35,26 @@
 	//
 	//  instance functions
 	//
-	function init() {
+	var init = function() {
 		if (!sf.TouchSprite.prototype.init.call(this)) {
 			return false;
 		}
 		
 		return true;
-	}
+	};
 	
-	function appointHandler(eventTree, actionTree) {
+	var appointHandler = function(eventTree, actionTree) {
 //		var handler = sf.TouchHandler.create(eventTree, actionTree);
 //		this.setEventDelegate(handler);
-	}
+	};
 	
-	function setAttributes(dict) {
+	var setAttributes = function(dict) {
 		if (!sf.TouchSprite.prototype.setAttributes.call(this, dict)) {
 			return false;
 		}
 		
 		return true;
-	}
+	};
 	
 	//--------------------------------------------------------------------------
 	

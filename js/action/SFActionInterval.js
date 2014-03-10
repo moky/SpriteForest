@@ -54,10 +54,10 @@
 	//
 	//  constructor
 	//
-	function Sequence() {
+	var Sequence = function() {
 		sf.ActionInterval.prototype.ctor.call(this);
 		this._actions = null;
-	}
+	};
 	
 	//
 	//  static functions
@@ -66,14 +66,14 @@
 	//
 	//  instance functions
 	//
-	function init() {
+	var init = function() {
 		if (!sf.ActionInterval.prototype.init.call(this)) {
 			return false;
 		}
 		this._actions = null;
 		return true;
-	}
-	function initWithDictionary(dict) {
+	};
+	var initWithDictionary = function(dict) {
 		if (!sf.ActionInterval.prototype.initWithDictionary(dict)) {
 			return false;
 		}
@@ -97,15 +97,15 @@
 		
 		this._actions = actions;
 		return true;
-	}
+	};
 	
-	function ccAction() {
+	var ccAction = function() {
 		if (!this._actions) {
 			cn.error(this._actions);
 			return null;
 		}
 		return cc.Sequence.create(this._actions);
-	}
+	};
 	
 	var prop = {
 		ctor: Sequence,
@@ -134,11 +134,11 @@
 	//
 	//  constructor
 	//
-	function Repeat() {
+	var Repeat = function() {
 		sf.ActionInterval.prototype.ctor.call(this);
 		this._action = null;
 		this._times = 0;
-	}
+	};
 	
 	//
 	//  static functions
@@ -147,15 +147,15 @@
 	//
 	//  instance functions
 	//
-	function init() {
+	var init = function() {
 		if (!sf.ActionInterval.prototype.init.call(this)) {
 			return false;
 		}
 		this._action = null;
 		this._times = 0;
 		return true;
-	}
-	function initWithDictionary(dict) {
+	};
+	var initWithDictionary = function(dict) {
 		if (!sf.ActionInterval.prototype.initWithDictionary.call(this, dict)) {
 			return false;
 		}
@@ -165,15 +165,15 @@
 		}
 		this._times = dict['Times'];
 		return true;
-	}
+	};
 	
-	function ccAction() {
+	var ccAction = function() {
 		if (!this._action || !this._times) {
 			cn.error(this._action, this._times);
 			return null;
 		}
 		return cc.Repeat.create(this._action, this._times);
-	}
+	};
 	
 	var prop = {
 		ctor: Repeat,
@@ -203,10 +203,10 @@
 	//
 	//  constructor
 	//
-	function Spawn() {
+	var Spawn = function() {
 		sf.ActionInterval.prototype.ctor.call(this);
 		this._actions = null;
-	}
+	};
 	
 	//
 	//  static functions
@@ -215,14 +215,14 @@
 	//
 	//  instance functions
 	//
-	function init() {
+	var init = function() {
 		if (!sf.ActionInterval.prototype.init.call(this)) {
 			return false;
 		}
 		this._actions = null;
 		return true;
-	}
-	function initWithDictionary(dict) {
+	};
+	var initWithDictionary = function(dict) {
 		if (!sf.ActionInterval.prototype.initWithDictionary.call(this, dict)) {
 			return false;
 		}
@@ -246,15 +246,15 @@
 		
 		this._actions = actions;
 		return true;
-	}
+	};
 	
-	function ccAction() {
+	var ccAction = function() {
 		if (!this._actions) {
 			cn.error(this._actions);
 			return null;
 		}
 		return cc.Spawn.create(this._actions);
-	}
+	};
 	
 	var prop = {
 		ctor: Spawn,
@@ -291,9 +291,9 @@
 	//
 	//  instance functions
 	//
-	function ccAction() {
+	var ccAction = function() {
 		return cc.DelayTime.create(this._duration);
-	}
+	};
 	
 	var prop = {
 		ctor: sf.ActionInterval.prototype.ctor,
@@ -318,10 +318,10 @@
 	//
 	//  constructor
 	//
-	function ReverseTime() {
+	var ReverseTime = function() {
 		sf.ActionInterval.prototype.ctor.call(this);
 		this._action = null;
-	}
+	};
 	
 	//
 	//  static functions
@@ -330,14 +330,14 @@
 	//
 	//  instance functions
 	//
-	function init() {
+	var init = function() {
 		if (!sf.ActionInterval.prototype.init.call(this)) {
 			return false;
 		}
 		this._action = null;
 		return true;
-	}
-	function initWithDictionary(dict) {
+	};
+	var initWithDictionary = function(dict) {
 		if (!sf.ActionInterval.prototype.initWithDictionary.call(this, dict)) {
 			return false;
 		}
@@ -349,15 +349,15 @@
 		
 		cn.error(dict);
 		return false;
-	}
+	};
 	
-	function ccAction() {
+	var ccAction = function() {
 		if (!this._action) {
 			cn.error(this._action);
 			return null;
 		}
 		return cc.ReverseTime.create(this._action);
-	}
+	};
 	
 	var prop = {
 		ctor: ReverseTime,
@@ -386,13 +386,13 @@
 	//
 	//  constructor
 	//
-	function Animate() {
+	var Animate = function() {
 		sf.ActionInterval.prototype.ctor.call(this);
 		this._frames = null;
 		this._delay = 0;
 		this._loops = 1;
 		this._restoreOriginalFrame = false;
-	}
+	};
 	
 	//
 	//  static functions
@@ -401,7 +401,7 @@
 	//
 	//  instance functions
 	//
-	function init() {
+	var init = function() {
 		if (!sf.ActionInterval.prototype.init.call(this)) {
 			return false;
 		}
@@ -410,8 +410,8 @@
 		this._loops = 1;
 		this._restoreOriginalFrame = false;
 		return true;
-	}
-	function initWithDictionary(dict) {
+	};
+	var initWithDictionary = function(dict) {
 		if (!sf.ActionInterval.prototype.initWithDictionary.call(this, dict)) {
 			return false;
 		}
@@ -429,9 +429,9 @@
 		this._restoreOriginalFrame = restoreOriginalFrame;
 		
 		return true;
-	}
+	};
 	
-	function createAnimation(frames, delayTime) {
+	var createAnimation = function(frames, delayTime) {
 		
 		var spriteFrames = [];
 		var frame, file;
@@ -458,9 +458,9 @@
 		}
 		
 		return cc.Animation.create(spriteFrames, delayTime);
-	}
+	};
 	
-	function ccAction() {
+	var ccAction = function() {
 		var frames = this._frames;
 		if (!frames || frames.length < 1) {
 			cn.error(this._frames);
@@ -475,7 +475,7 @@
 		animation.setLoops(this._loops);
 		animation.setRestoreOriginalFrame(this._restoreOriginalFrame);
 		return cc.Animate.create(animation);
-	}
+	};
 	
 	var prop = {
 		ctor: Animate,

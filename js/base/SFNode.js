@@ -24,11 +24,11 @@
 	//
 	//  construtor
 	//
-	function Node() {
+	var Node = function() {
 		cn.Node.prototype.ctor.call(this);
-	}
+	};
 	
-	function nodeWithString(string) {
+	var nodeWithString = function(string) {
 		var Class = cn.classFromString(string);
 		if (typeof Class !== 'function') {
 			cn.error(string);
@@ -40,8 +40,8 @@
 			node.init();
 		}
 		return node;
-	}
-	function nodeWithDictionary(dict) {
+	};
+	var nodeWithDictionary = function(dict) {
 		var Class = cn.classFromString(dict['Class']);
 		if (typeof Class !== 'function') {
 			cn.error(dict);
@@ -55,12 +55,12 @@
 			node.init();
 		}
 		return node;
-	}
+	};
 	
 	//
 	//  static functions
 	//
-	function create() {
+	var create = function() {
 		if (arguments.length === 0 || !arguments[0]) {
 			var node = new sf.Node();
 			node.init();
@@ -73,17 +73,17 @@
 			cn.error(arguments);
 		}
 		return null;
-	}
+	};
 	
 	//
 	//  instance functions
 	//
 	
-	function _standard_string(string) {
+	var _standard_string = function(string) {
 		return string ? string.replace(/\s/g, '').toLowerCase() : '';
-	}
+	};
 	
-	function processPositionAdjustment(child, dict, parent) {
+	var processPositionAdjustment = function(child, dict, parent) {
 		if (!child || child.getPositionX() == 0 || child.getPositionY() == 0) {
 			return;
 		}
@@ -152,9 +152,9 @@
 		if (position.length >= 5) { // "{0,0}"
 			child.setPosition(cc.PointFromString(position));
 		}
-	}
+	};
 	
-	function processScaleMode(child, dict, parent) {
+	var processScaleMode = function(child, dict, parent) {
 		if (!child || child.getPositionX() == 1 || child.getPositionY() == 1) {
 			return;
 		}
@@ -184,9 +184,9 @@
 		} else if (scale === 'aspecty') {
 			child.setScale(scaleY);
 		}
-	}
+	};
 	
-	function addChildren(array, spriteOrLayer, node) {
+	var addChildren = function(array, spriteOrLayer, node) {
 		node = node || this;
 		
 		var child, zOrder, count = array.length;
@@ -216,21 +216,21 @@
 				node.addChild(child, zOrder);
 			}
 		}
-	}
+	};
 	
-	function addSprites(array, node) {
+	var addSprites = function(array, node) {
 		if (array && array.length > 0) {
 			addChildren(array, 0, node || this);
 		}
-	}
+	};
 	
-	function addLayers(array, node) {
+	var addLayers = function(array, node) {
 		if (array && array.length > 0) {
 			addChildren(array, 1, node || this);
 		}
-	}
+	};
 	
-	function getTarget(string, node) {
+	var getTarget = function(string, node) {
 		node = node || this;
 		if (!string) {
 			return node;
@@ -264,27 +264,27 @@
 		
 		cn.log('no such target: ' + target);
 		return null;
-	}
+	};
 	
 	//------------------------------------------------------- sf.Node extensions
 	
-	function instanceExtensions(Node) {
+	var instanceExtensions = function(Node) {
 		
 		Node.prototype.addSprites = addSprites;
 		Node.prototype.addLayers = addLayers;
 		Node.prototype.getTarget = getTarget;
 		
 		return Node;
-	}
+	};
 	
-	function classExtensions(Node) {
+	var classExtensions = function(Node) {
 		
 		Node.addSprites = addSprites;
 		Node.addLayers = addLayers;
 		Node.getTarget = getTarget;
 		
 		return Node;
-	}
+	};
 	
 	//--------------------------------------------------------------------------
 	

@@ -24,10 +24,10 @@
 	//
 	//  constructor
 	//
-	function ActionMagic() {
+	var ActionMagic = function() {
 		sf.Action.prototype.ctor.call(this);
 		this._dict = null;
-	}
+	};
 	
 	//
 	//  static functions
@@ -36,24 +36,24 @@
 	//
 	//  instance functions
 	//
-	function init() {
+	var init = function() {
 		if (!sf.Action.prototype.init.call(this)) {
 			return false;
 		}
 		this._dict = null;
 		return true;
-	}
-	function initWithDictionary(dict) {
+	};
+	var initWithDictionary = function(dict) {
 		if (!sf.Action.prototype.initWithDictionary.call(this, dict)) {
 			return false;
 		}
 		this._dict = dict;
 		return true;
-	}
+	};
 	
-	function ccAction() {
+	var ccAction = function() {
 		return cc.ActionMagic.create(dict);
-	}
+	};
 	
 	//--------------------------------------------------------------------------
 	
@@ -79,12 +79,12 @@
 	var cc = sf.cc;
 	var cn = sf.cn;
 	
-	function MagicBuilder(name) {
+	var MagicBuilder = function(name) {
 		
-		function ccAction() {
+		var ccAction = function() {
 			var ccClass = cn.classFromString('CCAction' + name);
 			return ccClass ? ccClass.create(this._dict) : null;
-		}
+		};
 		
 		var prop = {
 			ctor: sf.ActionMagic.prototype.ctor,
@@ -95,7 +95,7 @@
 		
 		sf['Action' + name] = sfClass;
 		return sfClass;
-	}
+	};
 	
 	// magic
 	MagicBuilder('Audio');

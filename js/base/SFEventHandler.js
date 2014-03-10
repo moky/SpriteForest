@@ -24,33 +24,33 @@
 	//
 	//  constructor
 	//
-	function EventHandler() {
+	var EventHandler = function() {
 		this._eventTree = null;
 		this._actionTree = null;
-	}
+	};
 	
 	//
 	//  static functions
 	//
-	function create(eventTree, actionTree) {
+	var create = function(eventTree, actionTree) {
 		var handler = new sf.EventHandler();
 		handler.init(eventTree, actionTree);
 		return handler;
-	}
+	};
 	
 	//
 	//  instance functions
 	//
-	function init(eventTree, actionTree) {
+	var init = function(eventTree, actionTree) {
 		this._eventTree = eventTree;
 		this._actionTree = actionTree;
 		
 		this.snapshot(); // for restore 'Target'
 		
 		return true;
-	}
+	};
 	
-	function getTarget(dict, node) {
+	var getTarget = function(dict, node) {
 		var target = dict['Target'];
 		if (!target) {
 			target = dict['ss_Target'];
@@ -63,9 +63,9 @@
 			return sf.Node.getTarget(target, node);
 		}
 		return target;
-	}
+	};
 	
-	function runAction(dict, node) {
+	var runAction = function(dict, node) {
 		dict['Target'] = node;
 		// create action
 		var action = sf.Action.create(dict);
@@ -81,9 +81,9 @@
 		}
 		cn.error(action);
 		return false;
-	}
+	};
 	
-	function doEvent(eventName, node) {
+	var doEvent = function(eventName, node) {
 		if (!this._eventTree || !node) {
 			//cn.log(eventName);
 			return false;
@@ -123,9 +123,9 @@
 		}
 		
 		return flag;
-	}
+	};
 	
-	function doAction(actionName, node) {
+	var doAction = function(actionName, node) {
 		if (!this._eventTree || !node) {
 			//cn.log(eventName);
 			return false;
@@ -141,21 +141,21 @@
 		
 		var target = getTarget(dict, node);
 		return runAction(dict, target);
-	}
+	};
 	
-	function snapshotArray(array) {
+	var snapshotArray = function(array) {
 		if (array)
 		for (var i = array.length - 1; i >= 0; --i) {
 			snapshotDictionary(array[i]);
 		}
-	}
-	function restoreArray(array) {
+	};
+	var restoreArray = function(array) {
 		if (array)
 		for (var i = array.length - 1; i >= 0; --i) {
 			restoreDictionary(array[i]);
 		}
-	}
-	function snapshotDictionary(dict) {
+	};
+	var snapshotDictionary = function(dict) {
 		if (dict)
 		for (var key in dict) {
 			var obj = dict[key];
@@ -167,8 +167,8 @@
 				snapshotDictionary(obj);
 			}
 		}
-	}
-	function restoreDictionary(dict) {
+	};
+	var restoreDictionary = function(dict) {
 		if (dict)
 		for (var key in dict) {
 			var obj = dict[key];
@@ -188,17 +188,17 @@
 				restoreDictionary(obj);
 			}
 		}
-	}
+	};
 	
-	function restore() {
+	var restore = function() {
 		restoreDictionary(this._eventTree);
 		restoreDictionary(this._actionTree);
-	}
+	};
 	
-	function snapshot() {
+	var snapshot = function() {
 		snapshotDictionary(this._eventTree);
 		snapshotDictionary(this._actionTree);
-	}
+	};
 	
 	//--------------------------------------------------------------------------
 	

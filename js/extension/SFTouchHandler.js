@@ -24,20 +24,20 @@
 	//
 	//  constructor
 	//
-	function TouchHandler() {
+	var TouchHandler = function() {
 		sf.EventHandler.prototype.ctor.call(this);
-	}
+	};
 	
 	//
 	//  static functions
 	//
-	function create(eventTree, actionTree) {
+	var create = function(eventTree, actionTree) {
 		var handler = new sf.TouchHandler();
 		if (handler.init(eventTree, actionTree)) {
 			return handler;
 		}
 		return null;
-	}
+	};
 	
 	//
 	//  instance functions
@@ -45,45 +45,45 @@
 	
 	// CNTouchDelegate
 	// button
-	function onFingerDown(node) {
+	var onFingerDown = function(node) {
 		this.doEvent('onFingerDown', node);
 		this.doEvent('onMouseDown', node); // deprecated
-	}
-	function onFingerUp(node) {
+	};
+	var onFingerUp = function(node) {
 		this.doEvent('onFingerUp', node);
 		this.doEvent('onMouseUp', node); // deprecated
-	}
-	function onFingerOver(node) {
+	};
+	var onFingerOver = function(node) {
 		this.doEvent('onFingerOver', node);
 		this.doEvent('onMouseOver', node); // deprecated
-	}
-	function onFingerOut(node) {
+	};
+	var onFingerOut = function(node) {
 		this.doEvent('onFingerOut', node);
 		this.doEvent('onMouseOut', node); // deprecated
-	}
-	function onFingerMove(node) {
+	};
+	var onFingerMove = function(node) {
 		this.doEvent('onFingerMove', node);
 		this.doEvent('onMouseMove', node); // deprecated
-	}
-	function onClick(node) {
+	};
+	var onClick = function(node) {
 		this.doEvent('onClick', node);
-	}
-	function onDoubleClick(node) {
+	};
+	var onDoubleClick = function(node) {
 		this.doEvent('onDoubleClick', node);
-	}
+	};
 	// guesture
-	function onSwipeLeft(node) {
+	var onSwipeLeft = function(node) {
 		this.doEvent('onSwipeLeft', node);
-	}
-	function onSwipeRight(node) {
+	};
+	var onSwipeRight = function(node) {
 		this.doEvent('onSwipeRight', node);
-	}
-	function onSwipeUp(node) {
+	};
+	var onSwipeUp = function(node) {
 		this.doEvent('onSwipeUp', node);
-	}
-	function onSwipeDown(node) {
+	};
+	var onSwipeDown = function(node) {
 		this.doEvent('onSwipeDown', node);
-	}
+	};
 	
 	//--------------------------------------------------------------------------
 	

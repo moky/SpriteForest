@@ -24,24 +24,24 @@
 	//
 	//  constructor
 	//
-	function TouchSprite() {
+	var TouchSprite = function() {
 		sf.Sprite.prototype.ctor.call(this);
 		this._controller = null;
 		this._irregular = false;
 		this._touchBounds = null;
-	}
+	};
 	
 	//
 	//  static functions
 	//
-	function create() {
+	var create = function() {
 		sf.Sprite.create.apply(this, arguments);
-	}
+	};
 	
 	//
 	//  instance functions
 	//
-	function init() {
+	var init = function() {
 		if (!sf.Sprite.prototype.init.call(this)) {
 			return false;
 		}
@@ -57,14 +57,14 @@
 		this._touchBounds = cc.RectZero();
 		
 		return true;
-	}
+	};
 	
-	function appointHandler(eventTree, actionTree) {
+	var appointHandler = function(eventTree, actionTree) {
 		var handler = sf.TouchHandler.create(eventTree, actionTree);
 		this.setEventDelegate(handler);
-	}
+	};
 	
-	function onEnter() {
+	var onEnter = function() {
 		sf.Sprite.prototype.onEnter.call(this);
 		
 		var controller = this._controller;
@@ -75,8 +75,8 @@
 			//if (delegate instanceof cn.TouchDelegate)
 			controller.setDelegate(delegate);
 		}
-	}
-	function onExit() {
+	};
+	var onExit = function() {
 		var controller = this._controller;
 		
 		if (controller) {
@@ -85,20 +85,20 @@
 		}
 		
 		sf.Sprite.prototype.onExit.call(this);
-	}
+	};
 	
 	// CNNode extensions
-	function containsNodeSpacePoint(point) {
+	var containsNodeSpacePoint = function(point) {
 		if (!cc.rectEqualToRect(this._touchBounds, cc.RectZero()) &&
 			!cc.rectContainsPoint(this._touchBounds, point)) {
 			return false;
 		}
 		return sf.Sprite.prototype.containsNodeSpacePoint.call(this, point);
-	}
-	function containsTouchLocation(touch) {
+	};
+	var containsTouchLocation = function(touch) {
 		return sf.Sprite.prototype.containsTouchLocationWithPixel.call(this, touch, this._irregular);
-	}
-	function setAttributes(dict) {
+	};
+	var setAttributes = function(dict) {
 		if (!sf.Sprite.prototype.setAttributes.call(this, dict)) {
 			return false;
 		}
@@ -112,7 +112,7 @@
 		this._touchBounds = touchBounds ? cc.RectFromString(touchBounds) : cc.RectZero();
 		
 		return true;
-	}
+	};
 	
 	//--------------------------------------------------------------------------
 	

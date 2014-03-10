@@ -24,39 +24,39 @@
 	//
 	//  constructor
 	//
-	function Lord() {
+	var Lord = function() {
 		this._currentForest = null;
 		this._histories = null;
-	}
+	};
 	
 	//
 	//  static functions
 	//
 	var _sharedLoard = null;
 	
-	function getInstance() {
+	var getInstance = function() {
 		if (!_sharedLoard) {
 			_sharedLoard = new sf.Lord();
 			_sharedLoard.init();
 		}
 		return _sharedLoard;
-	}
+	};
 	
-	function isForestExists() {
+	var isForestExists = function() {
 		//...
 		return true;
-	}
+	};
 	
 	//
 	//  instance functions
 	//
-	function init() {
+	var init = function() {
 		this._currentForest = null;
 		this._histories = [];
 		return true;
-	}
+	};
 	
-	function runIntoForest(path, scene) {
+	var runIntoForest = function(path, scene) {
 		
 		if (!sf.Lord.isForestExists(path)) {
 			cn.log('forest not exists at path: ' + path);
@@ -70,9 +70,9 @@
 		cn.log('running into forest: ' + path);
 		this._currentForest = sf.Forest.create(path);
 		return this.performScene(scene);
-	}
+	};
 	
-	function performScene(scene) {
+	var performScene = function(scene) {
 		if (!this._currentForest) {
 			cn.error(scene);
 			return false;
@@ -90,7 +90,7 @@
 		this._histories.push(his);
 		
 		return this._currentForest.performScene(scene);
-	}
+	};
 	
 	//////////////////////////////////
 	//
@@ -103,7 +103,7 @@
 	//        (x+1) File : "/path/to/forest/root/forest2.bundle/main.plist"
 	//        (x+2) Scene: [NSNull null]
 	//
-	function goBack() {
+	var goBack = function() {
 		// lock begin
 		
 		var histories = this._histories;
@@ -151,15 +151,15 @@
 		
 		// lock end
 		return true;
-	}
+	};
 	
-	function showLoadingIndicator() {
+	var showLoadingIndicator = function() {
 		// do nothing
-	}
+	};
 	
-	function hideLoadingIndicator() {
+	var hideLoadingIndicator = function() {
 		// do nothing
-	}
+	};
 	
 	//--------------------------------------------------------------------------
 	

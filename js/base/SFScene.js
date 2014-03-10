@@ -24,14 +24,14 @@
 	//
 	//  constructor
 	//
-	function Scene() {
+	var Scene = function() {
 		cn.Scene.prototype.ctor.call(this);
-	}
+	};
 	
 	//
 	//  static functions
 	//
-	function create(dict) {
+	var create = function(dict) {
 		if (arguments.length === 0 || !arguments[0]) {
 			var node = new this();
 			node.init();
@@ -50,13 +50,13 @@
 			cn.error(arguments);
 		}
 		return null;
-	}
+	};
 	
-	function addSpriteFramesWithFile(filename) {
+	var addSpriteFramesWithFile = function(filename) {
 		return cn.SpriteFrameCache.loadTextureAndSprites(filename);
-	}
+	};
 	
-	function loadTextures(textures) {
+	var loadTextures = function(textures) {
 		if (!textures || textures.length === 0) {
 			return null;
 		}
@@ -80,9 +80,9 @@
 			}
 		}
 		return array;
-	}
+	};
 	
-	function cleanTextures(textures) {
+	var cleanTextures = function(textures) {
 		var frameCache = cc.SpriteFrameCache.getInstance();
 		var textureCache = cc.TextureCache.getInstance();
 		for (var i = textures.length - 1; i >= 0; --i) {
@@ -90,12 +90,12 @@
 			frameCache.removeSpriteFramesFromTexture(texture);
 			TextureCache.removeTexture(texture);
 		}
-	}
+	};
 	
 	//
 	//  instance functions
 	//
-	function initWithDictionary(dict) {
+	var initWithDictionary = function(dict) {
 		if (!cn.Scene.prototype.init.call(this, dict)) {
 			cn.error(this);
 			return false;
@@ -129,7 +129,7 @@
 		if (sprites) {
 			this.addSprites(sprites);
 		}
-	}
+	};
 	
 	//--------------------------------------------------------------------------
 	

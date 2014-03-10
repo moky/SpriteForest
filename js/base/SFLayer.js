@@ -24,15 +24,15 @@
 	//
 	//  constructor
 	//
-	function Layer() {
+	var Layer = function() {
 		cn.Layer.prototype.ctor.call(this);
 		this._textures = null;
-	}
+	};
 	
 	//
 	//  static functions
 	//
-	function create() {
+	var create = function() {
 		if (arguments.length === 0 || !arguments[0]) {
 			var node = new this();
 			node.init();
@@ -64,20 +64,20 @@
 			cn.error(arguments);
 		}
 		return null;
-	}
+	};
 	
 	//
 	//  instance functions
 	//
-	function init() {
+	var init = function() {
 		if (!cn.Layer.prototype.init.call(this)) {
 			cn.error(this);
 			return false;
 		}
 		this._textures = null;
 		return true;
-	}
-	function initWithDictionary(dict) {
+	};
+	var initWithDictionary = function(dict) {
 		if (!cn.Layer.prototype.initWithDictionary.call(this, dict)) {
 			cn.error(dict);
 			return false;
@@ -102,19 +102,19 @@
 		}
 		
 		return true;
-	}
+	};
 	
-	function getTextures() {
+	var getTextures = function() {
 		return this._textures;
-	}
-	function setTextures(textures) {
+	};
+	var setTextures = function(textures) {
 		if (this._textures != textures) {
 			cn.log('cleaning textures');
 			sf.Scene.cleanTextures(this._textures);
 			
 			this._textures = textures;
 		}
-	}
+	};
 	
 	//--------------------------------------------------------------------------
 	

@@ -53,12 +53,12 @@
 	var cc = sf.cc;
 	var cn = sf.cn;
 	
-	function MagicBuilder(name) {
+	var MagicBuilder = function(name) {
 		
-		function ccAction() {
+		var ccAction = function() {
 			var ccClass = cc[name];
 			return ccClass ? ccClass.create() : null;
-		}
+		};
 		
 		var prop = {
 			ctor: sf.ActionInstant.prototype.ctor,
@@ -69,7 +69,7 @@
 		
 		sf['Action' + name] = sfClass;
 		return sfClass;
-	}
+	};
 	
 	// Show
 	MagicBuilder('Show');
@@ -94,10 +94,10 @@
 	//
 	//  constructor
 	//
-	function Place() {
+	var Place = function() {
 		sf.ActionInstant.prototype.ctor.call(this);
 		this._position = null;
-	}
+	};
 	
 	//
 	//  static functions
@@ -106,14 +106,14 @@
 	//
 	//  instance functions
 	//
-	function init() {
+	var init = function() {
 		if (!sf.ActionInstant.prototype.init.call(this)) {
 			return false;
 		}
 		this._position = null;
 		return true;
-	}
-	function initWithDictionary(dict) {
+	};
+	var initWithDictionary = function(dict) {
 		if (!sf.ActionInstant.prototype.initWithDictionary.call(this, dict)) {
 			return false;
 		}
@@ -122,11 +122,11 @@
 			this._position = cc.PointFromString(position);
 		}
 		return true;
-	}
+	};
 	
-	function ccAction() {
+	var ccAction = function() {
 		return cc.Place.create(this._position);
-	}
+	};
 	
 	//--------------------------------------------------------------------------
 	

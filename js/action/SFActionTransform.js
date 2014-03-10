@@ -23,13 +23,13 @@
 	var cc = sf.cc;
 	var cn = sf.cn;
 	
-	function initWithDictionary(dict) {
+	var initWithDictionary = function(dict) {
 		if (!sf.ActionInterval.prototype.initWithDictionary.call(this, dict)) {
 			return false;
 		}
 		this._angle = dict['Angle'] || dict['Rotation'];
 		return true;
-	}
+	};
 	
 	var prop = {
 		ctor: sf.ActionInterval.prototype.ctor,
@@ -38,12 +38,12 @@
 		_angle: 0,
 	};
 	
-	function rotateTo() {
+	var rotateTo = function() {
 		return cc.RotateTo.create(this._duration, this._angle);
-	}
-	function rotateBy() {
+	};
+	var rotateBy = function() {
 		return cc.RotateBy.create(this._duration, this._angle);
-	}
+	};
 	
 	prop.ccAction = rotateTo;
 	sf.RotateTo = sf.ActionInterval.extend(prop);
@@ -60,14 +60,14 @@
 	var cc = sf.cc;
 	var cn = sf.cn;
 	
-	function initWithDictionary(dict) {
+	var initWithDictionary = function(dict) {
 		if (!sf.ActionInterval.prototype.initWithDictionary.call(this, dict)) {
 			return false;
 		}
 		var position = dict['Position'];
 		this._position = position ? cc.PointFromString(position) : cc.PointZero();
 		return true;
-	}
+	};
 	
 	var prop = {
 		ctor: sf.ActionInterval.prototype.ctor,
@@ -76,12 +76,12 @@
 		_position: null,
 	};
 	
-	function moveTo() {
+	var moveTo = function() {
 		return cc.MoveTo.create(this._duration, this._position);
-	}
-	function moveBy() {
+	};
+	var moveBy = function() {
 		return cc.MoveBy.create(this._duration, this._position);
-	}
+	};
 	
 	prop.ccAction = moveTo;
 	sf.MoveTo = sf.ActionInterval.extend(prop);
@@ -98,7 +98,7 @@
 	var cc = sf.cc;
 	var cn = sf.cn;
 	
-	function initWithDictionary(dict) {
+	var initWithDictionary = function(dict) {
 		if (!sf.ActionInterval.prototype.initWithDictionary.call(this, dict)) {
 			return false;
 		}
@@ -112,7 +112,7 @@
 			this._scaleY = scaleY !== undefined ? scaleY : 1.0;
 		}
 		return true;
-	}
+	};
 	
 	var prop = {
 		ctor: sf.ActionInterval.prototype.ctor,
@@ -122,12 +122,12 @@
 		_scaleY: 1.0,
 	};
 	
-	function scaleTo() {
+	var scaleTo = function() {
 		return cc.ScaleTo.create(this._duration, this._scaleX, this._scaleY);
-	}
-	function scaleBy() {
+	};
+	var scaleBy = function() {
 		return cc.ScaleBy.create(this._duration, this._scaleX, this._scaleY);
-	}
+	};
 	
 	prop.ccAction = scaleTo;
 	sf.ScaleTo = sf.ActionInterval.extend(prop);
@@ -144,7 +144,7 @@
 	var cc = sf.cc;
 	var cn = sf.cn;
 	
-	function initWithDictionary(dict) {
+	var initWithDictionary = function(dict) {
 		if (!sf.ActionInterval.prototype.initWithDictionary.call(this, dict)) {
 			return false;
 		}
@@ -158,7 +158,7 @@
 			this._skewY = skewY !== undefined ? skewY : 1.0;
 		}
 		return true;
-	}
+	};
 	
 	var prop = {
 		ctor: sf.ActionInterval.prototype.ctor,
@@ -168,12 +168,12 @@
 		_skewY: 1.0,
 	};
 	
-	function skewTo() {
+	var skewTo = function() {
 		return cc.SkewTo.create(this._duration, this._skewX, this._skewY);
-	}
-	function skewBy() {
+	};
+	var skewBy = function() {
 		return cc.SkewBy.create(this._duration, this._skewX, this._skewY);
-	}
+	};
 	
 	prop.ccAction = skewTo;
 	sf.SkewTo = sf.ActionInterval.extend(prop);
@@ -190,7 +190,7 @@
 	var cc = sf.cc;
 	var cn = sf.cn;
 	
-	function initWithDictionary(dict) {
+	var initWithDictionary = function(dict) {
 		if (!sf.ActionInterval.prototype.initWithDictionary.call(this, dict)) {
 			return false;
 		}
@@ -202,7 +202,7 @@
 		this._jumps = dict['Jumps'];
 		
 		return true;
-	}
+	};
 	
 	var prop = {
 		ctor: sf.ActionInterval.prototype.ctor,
@@ -213,12 +213,12 @@
 		_jumps: 0,
 	};
 	
-	function jumpTo() {
+	var jumpTo = function() {
 		return cc.JumpTo.create(this._duration, this._position, this._height, this._jumps);
-	}
-	function jumpBy() {
+	};
+	var jumpBy = function() {
 		return cc.JumpBy.create(this._duration, this._position, this._height, this._jumps);
-	}
+	};
 	
 	prop.ccAction = jumpTo;
 	sf.JumpTo = sf.ActionInterval.extend(prop);
@@ -235,7 +235,7 @@
 	var cc = sf.cc;
 	var cn = sf.cn;
 	
-	function initWithDictionary(dict) {
+	var initWithDictionary = function(dict) {
 		if (!sf.ActionInterval.prototype.initWithDictionary.call(this, dict)) {
 			return false;
 		}
@@ -254,7 +254,7 @@
 		this._bezierConfig = conf;
 		
 		return true;
-	}
+	};
 	
 	var prop = {
 		ctor: sf.ActionInterval.prototype.ctor,
@@ -263,12 +263,12 @@
 		_bezierConfig: null,
 	};
 	
-	function bezierTo() {
+	var bezierTo = function() {
 		return cc.BezierTo.create(this._duration, this._bezierConfig);
-	}
-	function bezierBy() {
+	};
+	var bezierBy = function() {
 		return cc.BezierBy.create(this._duration, this._bezierConfig);
-	}
+	};
 	
 	prop.ccAction = bezierTo;
 	sf.BezierTo = sf.ActionInterval.extend(prop);

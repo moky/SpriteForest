@@ -23,13 +23,13 @@
 	var cc = sf.cc;
 	var cn = sf.cn;
 	
-	function initWithDictionary(dict) {
+	var initWithDictionary = function(dict) {
 		if (!sf.ActionInterval.prototype.initWithDictionary.call(this, dict)) {
 			return false;
 		}
 		this._times = dict['Times'];
 		return true;
-	}
+	};
 	
 	var prop = {
 		ctor: sf.ActionInterval.prototype.ctor,
@@ -38,9 +38,9 @@
 		_times: null,
 	};
 	
-	function blink() {
+	var blink = function() {
 		return cc.Blink.create(this._duration, this._times);
-	}
+	};
 	
 	prop.ccAction = blink;
 	sf.Blink = sf.ActionInterval.extend(prop);
@@ -54,13 +54,13 @@
 	var cc = sf.cc;
 	var cn = sf.cn;
 	
-	function initWithDictionary(dict) {
+	var initWithDictionary = function(dict) {
 		if (!sf.ActionInterval.prototype.initWithDictionary.call(this, dict)) {
 			return false;
 		}
 		this._opacity = dict['Opacity'];
 		return true;
-	}
+	};
 	
 	var prop = {
 		ctor: sf.ActionInterval.prototype.ctor,
@@ -69,15 +69,15 @@
 		_opacity: null,
 	};
 	
-	function fadeIn() {
+	var fadeIn = function() {
 		return cc.FadeIn.create(this._duration);
-	}
-	function fadeOut() {
+	};
+	var fadeOut = function() {
 		return cc.FadeOut.create(this._duration);
-	}
-	function fadeTo() {
+	};
+	var fadeTo = function() {
 		return cc.FadeTo.create(this._duration, this._opacity);
-	}
+	};
 	
 	prop.ccAction = fadeIn;
 	sf.FadeIn = sf.ActionInterval.extend(prop);
@@ -97,7 +97,7 @@
 	var cc = sf.cc;
 	var cn = sf.cn;
 	
-	function initWithDictionary(dict) {
+	var initWithDictionary = function(dict) {
 		if (!sf.ActionInterval.prototype.initWithDictionary.call(this, dict)) {
 			return false;
 		}
@@ -105,7 +105,7 @@
 		this._green = dict['Green'];
 		this._blue = dict['Blue'];
 		return true;
-	}
+	};
 	
 	var prop = {
 		ctor: sf.ActionInterval.prototype.ctor,
@@ -116,12 +116,12 @@
 		_blue: 0,
 	};
 	
-	function tintTo() {
+	var tintTo = function() {
 		return cc.TintTo.create(this._duration, this._red, this._green, this._blue);
-	}
-	function tintBy() {
+	};
+	var tintBy = function() {
 		return cc.TintBy.create(this._duration, this._red, this._green, this._blue);
-	}
+	};
 	
 	prop.ccAction = tintTo;
 	sf.TintTo = sf.ActionInterval.extend(prop);
@@ -138,7 +138,7 @@
 	var cc = sf.cc;
 	var cn = sf.cn;
 	
-	function initWithDictionary(dict) {
+	var initWithDictionary = function(dict) {
 		if (!sf.ActionInterval.prototype.initWithDictionary.call(this, dict)) {
 			return false;
 		}
@@ -147,7 +147,7 @@
 		this._rect = rect ? cc.RectFromString(rect) : cc.RectZero();
 		
 		return true;
-	}
+	};
 	
 	var prop = {
 		ctor: sf.ActionInterval.prototype.ctor,
@@ -156,12 +156,12 @@
 		_rect: null,
 	};
 	
-	function maskTo() {
+	var maskTo = function() {
 		return cc.MaskTo.create(this._duration, this._rect);
-	}
-	function maskBy() {
+	};
+	var maskBy = function() {
 		return cc.MaskBy.create(this._duration, this._rect);
-	}
+	};
 	
 	prop.ccAction = maskTo;
 	sf.MaskTo = sf.ActionInterval.extend(prop);

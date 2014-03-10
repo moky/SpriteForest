@@ -24,35 +24,35 @@
 	//
 	//  constructor
 	//
-	function Forest() {
+	var Forest = function() {
 		this._path = null;
 		this._scenes = null;
 		this._defaultScene = null;
-	}
+	};
 	
 	//
 	//  static functions
 	//
-	function create(path) {
+	var create = function(path) {
 		var obj = new sf.Forest();
 		if (obj.initWithPath(path)) {
 			return obj;
 		}
 		return null;
-	}
+	};
 	
 	//
 	//  instance functions
 	//
 	
-	function init() {
+	var init = function() {
 		this._path = null;
 		this._scenes = null;
 		this._defaultScene = null;
 		return true;
-	}
+	};
 	
-	function initWithPath(path) {
+	var initWithPath = function(path) {
 		if (!this.init()) {
 			return false;
 		}
@@ -99,9 +99,9 @@
 		cn.log('default scene = ' + this._defaultScene);
 		
 		return true;
-	}
+	};
 	
-	function scene(name) {
+	var scene = function(name) {
 		name = name || this._defaultScene;
 		cn.log('scene name = ' + name);
 		
@@ -124,9 +124,9 @@
 		}
 		
 		return sf.Scene.create(dict);
-	}
+	};
 	
-	function performScene(data) {
+	var performScene = function(data) {
 		var scene;
 		
 		if (typeof data === 'string') {
@@ -157,7 +157,7 @@
 			cn.error('failed to create scene');
 			return false;
 		}
-	}
+	};
 	
 	//--------------------------------------------------------------------------
 	

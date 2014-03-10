@@ -24,16 +24,16 @@
 	//
 	//  constructor
 	//
-	function Sprite() {
+	var Sprite = function() {
 		cn.Sprite.prototype.ctor.call(this);
 		this._textures = null;
 		this._eventDelegate = null;
-	}
+	};
 	
 	//
 	//  static functions
 	//
-	function create() {
+	var create = function() {
 		if (arguments.length === 0 || !arguments[0]) {
 			var node = new this();
 			node.init();
@@ -71,20 +71,20 @@
 			cn.error(arguments);
 		}
 		return null;
-	}
+	};
 	
 	//
 	//  instance functions
 	//
-	function init() {
+	var init = function() {
 		if (!cn.Sprite.prototype.init.call(this)) {
 			return false;
 		}
 		this._textures = null;
 		this._eventDelegate = null;
 		return true;
-	}
-	function initWithDictionary(dict) {
+	};
+	var initWithDictionary = function(dict) {
 		if (!cn.Sprite.prototype.initWithDictionary.call(this, dict)) {
 			cn.error(dict);
 			return false;
@@ -108,52 +108,52 @@
 		this.addSprites(sprites);
 		
 		return true;
-	}
+	};
 	
-	function getTextures() {
+	var getTextures = function() {
 		return this._textures;
-	}
-	function setTextures(textures) {
+	};
+	var setTextures = function(textures) {
 		if (this._textures != textures) {
 			sf.Scene.cleanTextures(this._textures);
 			this._textures = textures;
 		}
-	}
+	};
 	
-	function getEventDelegate() {
+	var getEventDelegate = function() {
 		return this._eventDelegate;
-	}
-	function setEventDelegate(delegate) {
+	};
+	var setEventDelegate = function(delegate) {
 		this._eventDelegate = delegate;
-	}
+	};
 	
-	function appointHandler(eventTree, actionTree) {
+	var appointHandler = function(eventTree, actionTree) {
 		var handler = sf.EventHandler.create(eventTree, actionTree);
 		this._eventDelegate = handler;
-	}
+	};
 	
-	function onEnter() {
+	var onEnter = function() {
 		cn.Sprite.prototype.onEnter.call(this);
 		
 		if (this._eventDelegate) {
 			this._eventDelegate.doEvent('onEnter', this);
 		}
-	}
-	function onEnterTransitionDidFinish() {
+	};
+	var onEnterTransitionDidFinish = function() {
 		cn.Sprite.prototype.onEnterTransitionDidFinish.call(this);
 		
 		if (this._eventDelegate) {
 			this._eventDelegate.doEvent('onEnterTransitionDidFinish', this);
 		}
-	}
-	function onExitTransitionDidStart() {
+	};
+	var onExitTransitionDidStart = function() {
 		if (this._eventDelegate) {
 			this._eventDelegate.doEvent('onExitTransitionDidStart', this);
 		}
 		
 		cn.Sprite.prototype.onExitTransitionDidStart.call(this);
-	}
-	function onExit() {
+	};
+	var onExit = function() {
 		if (this._eventDelegate) {
 			this._eventDelegate.doEvent('onExit', this);
 		}
@@ -163,7 +163,7 @@
 		}
 		
 		cn.Sprite.prototype.onExit.call(this);
-	}
+	};
 	
 	//--------------------------------------------------------------------------
 	

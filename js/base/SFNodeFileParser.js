@@ -24,44 +24,44 @@
 	//
 	//  constructor
 	//
-	function NodeFileParser() {
+	var NodeFileParser = function() {
 		this._path = '';
 		this._root = null;
-	}
+	};
 	
 	//
 	//  static functions
 	//
-	function create(path) {
+	var create = function(path) {
 		var parser = new sf.NodeFileParser();
 		if (parser.initWithFile(path)) {
 			return parser;
 		}
 		return null;
-	}
+	};
 	
 	//
 	//  instance functions
 	//
-	function init() {
+	var init = function() {
 		this._path = '';
 		this._root = null;
 		return true;
-	}
-	function initWithFile(path) {
+	};
+	var initWithFile = function(path) {
 		if (!this.init()) {
 			return false;
 		}
 		cn.log('parsing file: ' + path);
 		this.parse(path);
 		return true;
-	}
+	};
 	
-	function node() {
+	var node = function() {
 		return this._root ? this._root['SFNode'] : null;
-	}
+	};
 	
-	function _attributesFromString(string) {
+	var _attributesFromString = function(string) {
 		var lowercase = string.toLowerCase();
 		var pos = lowercase.indexOf('attributes=');
 		if (pos >= 0) {
@@ -101,9 +101,9 @@
 			
 			out[key] = value;
 		}
-	}
+	};
 	
-	function traverse(obj) {
+	var traverse = function(obj) {
 		var path = this._path ? this._path + '/' : '';
 		
 		if (!obj) {
@@ -170,9 +170,9 @@
 		}
 		
 		return obj; // other type object
-	}
+	};
 	
-	function parse(path) {
+	var parse = function(path) {
         var fileUtils = cc.FileUtils.getInstance();
 		var dict = fileUtils.createDictionaryWithContentsOfFile(path);
 		if (!dict) {
@@ -194,7 +194,7 @@
 		
 		cn.log('finish parsing SFNode file: ' + path);
 		this._root = obj;
-	}
+	};
 	
 	//--------------------------------------------------------------------------
 	
