@@ -7,38 +7,55 @@
 		<script type="text/javascript" src="../js/config.js"></script>
 		<script type="text/javascript" src="build.js"></script>
 		<style type="text/css">
-			a, pre {
+			.content {
 				margin: 10px 20px;
 				border: 1px solid #e0e0f5;
 				padding: 5px 8px;
 				background-color: #cccccc;
+				font-family: 'Courier';
 			}
 			.annotation {
 				color: green;
 				font-style: italic;
+			}
+			footer {
+				margin: 20px 0px 10px 0px;
+				border-top: 1px dashed #e0e04c;
+				padding: 10px 20px;
 			}
 		</style>
 	</head>
 	
 	<body>
 		
-		<h1>Javascript Packer</h1>
-		<div><a href="http://dean.edwards.name/packer/" target="_blank">http://dean.edwards.name/packer/</a></div>
+		<h1>Javascript Tools</h1>
+		<div>
+			<ul>
+				<li><a href="http://dean.edwards.name/packer/" target="_blank">http://dean.edwards.name/packer/</a></li>
+				<li><a href="http://jsbeautifier.org/" target="_blank">http://jsbeautifier.org/</a></li>
+			</ul>
+		</div>
 		
 		<h1>Building:</h1>
-		<pre>cd SpriteForest/build/ <span class="annotation"># enter build directory</span></pre>
+		<div class="content">
+			cd SpriteForest/build/ <span class="annotation"># enter build directory</span>
+		</div>
 		
 		<h2>SpriteForest</h2>
-		<pre id="spriteforest"></pre>
+		<div id="spriteforest" class="content"></div>
 		
 		<h2>Cocos2D-HTML5 (core)</h2>
-		<pre id="cocos2d-core"></pre>
+		<div id="cocos2d-core" class="content"></div>
 		
 		<h2>Cocos2D-HTML5 (extension)</h2>
-		<pre id="cocos2d-ext"></pre>
+		<div id="cocos2d-ext" class="content"></div>
 		
 		<h2>Cocos2D-HTML5 (plugin)</h2>
-		<pre id="cocos2d-plugin"></pre>
+		<div id="cocos2d-plugin" class="content"></div>
+		
+		<footer>
+			<div>&copy; 2014 moKy</div>
+		</footer>
 		
 	</body>
 	
@@ -50,9 +67,9 @@
 			var array = libFiles[tag];
 			var outfile = tag + (version ? '-v' + version : '') + '.js';
 			
-			var cc = 'echo "" > ' + outfile + ';\r\n';
+			var cc = 'echo "" > ' + outfile + ';';
 			for (var i = 0; i < array.length; ++i) {
-				cc += 'cat ' + handler(array[i]) + ' >> ' + outfile + ';\r\n';
+				cc += '<br/>\r\ncat ' + handler(array[i]) + ' >> ' + outfile + ';';
 			}
 			div.innerHTML = cc;
 		}
