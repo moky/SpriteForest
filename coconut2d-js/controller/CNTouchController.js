@@ -26,7 +26,7 @@
 	//
 	//  construtor
 	//
-	function TouchController() {
+	var TouchController = function() {
 		this._node = null;
 		this._delegate = null;
 		
@@ -38,7 +38,7 @@
 		
 		this._dragEnabled = false;
 		this._originalPosition = cc.PointZero();
-	}
+	};
 	
 	//
 	//  static functions
@@ -47,7 +47,7 @@
 	//
 	//  instance functions
 	//
-	function init() {
+	var init = function() {
 		this._node = null;
 		this._delegate = null;
 		
@@ -61,12 +61,12 @@
 		this._originalPosition = null;
 		
 		return true;
-	}
+	};
 	
-	function getNode() {
+	var getNode = function() {
 		return this._node;
-	}
-	function setNode(node) {
+	};
+	var setNode = function(node) {
 		if (this._node == node) {
 			return;
 		}
@@ -87,17 +87,17 @@
 				scene.addTouchNode(this._node, this, maxTouches);
 			}
 		}
-	}
+	};
 	
-	function getDelegate() {
+	var getDelegate = function() {
 		return this._delegate;
-	}
-	function setDelegate(delegate) {
+	};
+	var setDelegate = function(delegate) {
 		this._delegate = delegate;
-	}
+	};
 	
 	// CCTargetedTouchDelegate
-	function onTouchBegan(touch, event) {
+	var onTouchBegan = function(touch, event) {
 		var delegate = this._delegate;
 		var node = this._node;
 		
@@ -126,9 +126,9 @@
 		delegate.onFingerDown(node);
 		delegate.onFingerOver(node);
 		return true;
-	}
+	};
 	
-	function onTouchMoved(touch, event) {
+	var onTouchMoved = function(touch, event) {
 		var delegate = this._delegate;
 		var node = this._node;
 		
@@ -170,9 +170,9 @@
 				delegate.onFingerOut(node);
 			}
 		}
-	}
+	};
 	
-	function onTouchEnded(touch, event) {
+	var onTouchEnded = function(touch, event) {
 		var delegate = this._delegate;
 		var node = this._node;
 		
@@ -227,11 +227,11 @@
 		if (cn.Node.containsTouchLocation(touch, node)) {
 			delegate.onClick(node);
 		}
-	}
+	};
 	
-	function onTouchCancelled(touch, event) {
+	var onTouchCancelled = function(touch, event) {
 		this.onTouchEnded(touch, event);
-	}
+	};
 	
 	//--------------------------------------------------------------------------
 	

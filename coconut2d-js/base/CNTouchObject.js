@@ -23,8 +23,8 @@
 	//
 	//  construtor
 	//
-	function TouchObject() {
-	}
+	var TouchObject = function() {
+	};
 	
 	//
 	//  static functions
@@ -33,19 +33,19 @@
 	//
 	//  instance functions
 	//
-	function init() {
+	var init = function() {
 		this.count = 0;
 		this.maxTouches = -1; // unlimited
 		this.claimedTouches = [];
 		this.delegate = null;
 		return true;
-	}
+	};
 	
-	function removeAllClaimedTouches() {
+	var removeAllClaimedTouches = function() {
 		this.claimedTouches = [];
-	}
+	};
 	
-	function isClaimedTouch(touch) {
+	var isClaimedTouch = function(touch) {
 		var array = this.claimedTouches;
 		for (var i = array.length - 1; i >= 0; --i) {
 			if (array[i] == touch) {
@@ -53,9 +53,9 @@
 			}
 		}
 		return false;
-	}
+	};
 	
-	function removeClaimedTouch(touch) {
+	var removeClaimedTouch = function(touch) {
 		var array = this.claimedTouches;
 		for (var i = array.length - 1; i >= 0; --i) {
 			if (array[i] == touch) {
@@ -64,7 +64,7 @@
 			}
 		}
 		return false;
-	}
+	};
 	
 	//--------------------------------------------------------------------------
 	

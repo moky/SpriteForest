@@ -23,18 +23,18 @@
 	//
 	//  construtor
 	//
-	function Node() {
+	var Node = function() {
 		cc.Node.prototype.ctor.call(this);
-	}
+	};
 	
 	//
 	//  static functions
 	//
-	function create() {
+	var create = function() {
 		var node = new cn.Node();
 		node.init();
 		return node;
-	}
+	};
 	
 	//
 	//  instance functions
@@ -45,7 +45,7 @@
 	/**
 	 *  Check whether the node contains a point
 	 */
-	function containsNodeSpacePoint(point, node) {
+	var containsNodeSpacePoint = function(point, node) {
 		node = node || this;
 		for (var p = node; p; p = p.getParent()) {
 			if (!p.isVisible()) {
@@ -57,21 +57,21 @@
 		rect.setWidth(size.width);
 		rect.setHeight(size.height);
 		return cc.rectContainsPoint(rect, point);
-	}
+	};
 	
 	/**
 	 *  Check whether the point's pixel is visible in node space
 	 */
-	function containsVisiblePixelAtNodeSpacePoint(point, node) {
+	var containsVisiblePixelAtNodeSpacePoint = function(point, node) {
 		node = node || this;
 		var c = resetAndReadPixel(node, point);
 		return c.a != 0;
-	}
+	};
 	
 	/**
 	 *  Check whether the current node was hit, transparent pixel will get through
 	 */
-	function containsTouchLocation(touch, node) {
+	var containsTouchLocation = function(touch, node) {
 		node = node || this;
 		if (node.isKindOfClass(cn.Sprite) || node.isKindOfClass(cn.Layer)) {
 			// call instance method
@@ -83,8 +83,8 @@
 			// cc.Node
 			return containsTouchLocationWithPixel(touch, false, node);
 		}
-	}
-	function containsTouchLocationWithPixel(touch, checkPixel, node) {
+	};
+	var containsTouchLocationWithPixel = function(touch, checkPixel, node) {
 		node = node || this;
 		var point = node.convertTouchToNodeSpace(touch);
 		if (node.isKindOfClass(cn.Sprite) || node.isKindOfClass(cn.Layer)) {
@@ -104,14 +104,14 @@
 			return true;
 		}
 		return containsVisiblePixelAtNodeSpacePoint(point, node);
-	}
+	};
 	
 	//---------------------------------------------------- Attributes Extensions
 	
 	/**
 	 *  Set node's attributes from a dictionary
 	 */
-	function setAttributes(dict, node) {
+	var setAttributes = function(dict, node) {
 		node = node || this;
 		if (typeof dict !== 'object') {
 			cn.error(dict, node);
@@ -196,12 +196,12 @@
 		}
 		
 		return true;
-	}
+	};
 	
 	/**
 	 *  Get the node's running scene
 	 */
-	function ancestorScene(node) {
+	var ancestorScene = function(node) {
 		node = node || this;
 		for (var p = node; p; p = p.getParent()) {
 			if (p.isKindOfClass(cc.Scene)) {
@@ -210,52 +210,52 @@
 		}
 		cn.log('this node(tag:' + node.tag + ') is not in the running scene currently');
 		return null;
-	}
+	};
 	
 	//---------------------------------------------- Pixels and Image Extensions
 	
 	/**
 	 *  read pixels in the rect
 	 */
-	function readPixels(rect, node) {
+	var readPixels = function(rect, node) {
 		node = node || this;
 		//...
 		return null;
-	}
+	};
 	
-	function resetAndReadPixels(rect, node) {
+	var resetAndReadPixels = function(rect, node) {
 		node = node || this;
 		//...
 		return null;
-	}
+	};
 	
 	/**
 	 *  read color at the pixel
 	 */
-	function readPixel(point, node) {
+	var readPixel = function(point, node) {
 		node = node || this;
 		//...
 		return cc.Color4B(0, 0, 0, 255);
-	}
+	};
 	
-	function resetAndReadPixel(point, node) {
+	var resetAndReadPixel = function(point, node) {
 		node = node || this;
 		//...
 		return cc.Color4B(0, 0, 0, 255);
-	}
+	};
 	
 	/**
 	 *  get Image from node
 	 */
-	function getImage(rect, node) {
+	var getImage = function(rect, node) {
 		node = node || this;
 		//...
 		return null;
-	}
+	};
 	
 	//------------------------------------------------------- cn.Node extensions
 	
-	function instanceExtensions(Node) {
+	var instanceExtensions = function(Node) {
 		/* CNNode - Touch Location Extensions */
 		Node.prototype.containsNodeSpacePoint = containsNodeSpacePoint;
 		Node.prototype.containsVisiblePixelAtNodeSpacePoint = containsVisiblePixelAtNodeSpacePoint;
@@ -272,9 +272,9 @@
 		Node.prototype.getImage = getImage;
 		
 		return Node;
-	}
+	};
 	
-	function classExtensions(Node) {
+	var classExtensions = function(Node) {
 		/* CNNode - Touch Location Extensions */
 		Node.containsNodeSpacePoint = containsNodeSpacePoint;
 		Node.containsVisiblePixelAtNodeSpacePoint = containsVisiblePixelAtNodeSpacePoint;
@@ -291,7 +291,7 @@
 		Node.getImage = getImage;
 		
 		return Node;
-	}
+	};
 	
 	//--------------------------------------------------------------------------
 	

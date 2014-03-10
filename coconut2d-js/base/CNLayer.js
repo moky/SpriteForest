@@ -23,14 +23,14 @@
 	//
 	//  construtor
 	//
-	function Layer() {
+	var Layer = function() {
 		cc.Layer.prototype.ctor.call(this);
-	}
+	};
 	
 	//
 	//  static functions
 	//
-	function create() {
+	var create = function() {
 		var node = new cn.Layer();
 		if (arguments.length === 0) {
 			node.init();
@@ -46,12 +46,12 @@
 			cn.log('unknown arguments: ' + arguments);
 		}
 		return node;
-	}
+	};
 	
 	//
 	//  instance functions
 	//
-	function init() {
+	var init = function() {
 		if (!cc.Layer.prototype.init.call(this)) {
 			cn.error(this);
 			return false;
@@ -60,8 +60,8 @@
 		this.ignoreAnchorPointForPosition(true); //this.setIsRelativeAnchorPoint(true);
 		this.setPosition(cc.PointZero());
 		return true;
-	}
-	function initWithFile(filename) {
+	};
+	var initWithFile = function(filename) {
 		if (!this.init()) {
 			return false;
 		}
@@ -69,8 +69,8 @@
 		bg.setAnchorPoint(cc.PointZero());
 		bg.setPosition(cc.PointZero());
 		return this.initWithNode(bg);
-	}
-	function initWithNode(node) {
+	};
+	var initWithNode = function(node) {
 		var size = node.getContentSize();
 		var anchor = node.getAnchorPointInPoints();
 		var position = node.getPosition();
@@ -84,23 +84,23 @@
 		node.setPosition(cc.PointZero());
 		this.addChild(node);
 		return true;
-	}
-	function initWithFrame(frame) {
+	};
+	var initWithFrame = function(frame) {
 		if (!this.init()) {
 			return false;
 		}
 		this.setContentSize(frame.getWidth(), frame.getHeight());
 		this.setPosition(frame.getX(), frame.getY());
 		return true;
-	}
-	function initWithDictionary(dict) {
+	};
+	var initWithDictionary = function(dict) {
 		if (!this.init()) {
 			return false;
 		}
 		return this.setAttributes(dict);
-	}
+	};
 	
-	function focus(point) {
+	var focus = function(point) {
 		var winSize = cc.Director.getInstance().getWinSize();
 		var center = cc.p(winSize.width * 0.5, winSize.height * 0.5);
 		if (point) {
@@ -113,7 +113,7 @@
 			var position = this.getPosition();
 			return cc.p(center.x - position.x, center.y - position.y);
 		}
-	}
+	};
 	
 	//--------------------------------------------------------------------------
 	

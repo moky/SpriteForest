@@ -23,14 +23,14 @@
 	//
 	//  construtor
 	//
-	function Sprite() {
+	var Sprite = function() {
 		cc.Sprite.prototype.ctor.call(this);
-	}
+	};
 	
 	//
 	//  static functions
 	//
-	function create() {
+	var create = function() {
 		var node = new cn.Sprite();
 		if (arguments.length === 0) {
 			node.init();
@@ -42,27 +42,27 @@
 			cn.error(arguments);
 		}
 		return node;
-	}
+	};
 	
 	//
 	//  instance functions
 	//
-	function init() {
+	var init = function() {
 		if (!cc.Sprite.prototype.init.call(this)) {
 			cn.error(this);
 			return false;
 		}
 		
 		return true;
-	}
-	function initWithFile(filename) {
+	};
+	var initWithFile = function(filename) {
 		if (!this.init()) {
 			return false;
 		}
 		this.replaceImageWithFile(filename);
 		return true;
-	}
-	function initWithDictionary(dict) {
+	};
+	var initWithDictionary = function(dict) {
 		if (!this.init()) {
 			return false;
 		}
@@ -78,9 +78,9 @@
 		}
 		
 		return this.setAttributes(dict);
-	}
+	};
 	
-	function createSprites(filenames) {
+	var createSprites = function(filenames) {
 		var array = [];
 		for (var i = 0; i < filenames.length; ++i) {
 			var sprite = create(filenames[i]);
@@ -88,15 +88,15 @@
 			array.push(sprite);
 		}
 		return array;
-	}
+	};
 	
-	function getImageWithFile(filename) {
+	var getImageWithFile = function(filename) {
 		var image = new Image();
 		image.src = filename;
 		return image;
-	}
+	};
 	
-	function getSpriteFrameWithFile(filename) {
+	var getSpriteFrameWithFile = function(filename) {
 		//
 		//  try texture cache
 		//
@@ -157,9 +157,9 @@
 		}
 		
 		return null;
-	}
+	};
 	
-	function replaceImageWithFile(filename) {
+	var replaceImageWithFile = function(filename) {
 		var spriteFrame = getSpriteFrameWithFile(filename);
 		
 		if (!spriteFrame) {
@@ -170,7 +170,7 @@
 			var rotated = spriteFrame.isRotated();
 			this.initWithTexture(texture, rect, rotated);
 		}
-	}
+	};
 	
 	//--------------------------------------------------------------------------
 	

@@ -20,7 +20,7 @@
 	'use strict';
 	var cc = cn.cc;
 	
-	function classNameFromString(string) {
+	var classNameFromString = function(string) {
 		var start = string.indexOf('include class=');
 		if (start >= 0) {
 			start += 15;
@@ -31,17 +31,17 @@
 			string = stop > 0 ? string.substring(start, stop) : string.substring(start);
 		}
 		return string.replace(/\s/g, '');
-	}
+	};
 	
-	function classWithNameSpace(ns, path) {
+	var classWithNameSpace = function(ns, path) {
 		if (!ns) return null;
 		var pos = path.indexOf('.');
 		return pos < 0 ? ns[path] :
 			classWithNameSpace(ns[path.substring(0, pos)],
 							   path.substring(pos + 1));
-	}
+	};
 	
-	function classFromString(string) {
+	var classFromString = function(string) {
 		
 		string = classNameFromString(string);
 		var clazz;
@@ -66,7 +66,7 @@
 		}
 		
 		return null;
-	}
+	};
 	
 	cn.classFromString = classFromString;
 	

@@ -22,28 +22,28 @@
 	//
 	//  construtor
 	//
-	function MaskTo() {
+	var MaskTo = function() {
 		cc.ActionInterval.prototype.ctor.call(this);
 		this._startRect = null;
 		this._endRect = null;
 		this._delta = null;
-	}
+	};
 	
 	//
 	//  static functions
 	//
-	function create(duration, rect) {
+	var create = function(duration, rect) {
 		var action = new cc.MaskTo();
 		if (action.initWithDuration(duration, rect)) {
 			return action;
 		}
 		return null;
-	}
+	};
 	
 	//
 	//  instance functions
 	//
-	function init() {
+	var init = function() {
 		if (!cc.ActionInterval.prototype.init.call(this)) {
 			return false;
 		}
@@ -51,20 +51,20 @@
 		this._endRect = null;
 		this._delta = null;
 		return true;
-	}
-	function initWithDuration(duration, rect) {
+	};
+	var initWithDuration = function(duration, rect) {
 		if (!cc.ActionInterval.prototype.initWithDuration.call(this, duration)) {
 			return false;
 		}
 		this._endRect = cc.RECT_PIXELS_TO_POINTS(rect);
 		return true;
-	}
+	};
 	
-	function clone() {
+	var clone = function() {
 		return create(this._duration, this._endRect);
-	}
+	};
 	
-	function startWithTarget(target) {
+	var startWithTarget = function(target) {
 		cc.ActionInterval.prototype.startWithTarget.call(this, target);
 		var sprite = target;
 		if (sprite instanceof cc.Sprite) {
@@ -79,9 +79,9 @@
 			this._startRect = rect1;
 			this._delta = cc.rect(_x, _y, _w, _h);
 		}
-	}
+	};
 	
-	function update(time) {
+	var update = function(time) {
 		if (isNaN(time)) {
 			this.update(1);
 			this.stop();
@@ -98,7 +98,7 @@
 			
 			sprite.setTextureRect(cc.rect(_x, _y, _w, _h));
 		}
-	}
+	};
 	
 	var prop = {
 		ctor: MaskTo,
@@ -137,23 +137,23 @@
 	//
 	//  static functions
 	//
-	function create(duration, rect) {
+	var create = function(duration, rect) {
 		var action = new cc.MaskBy();
 		if (action.initWithDuration(duration, rect)) {
 			return action;
 		}
 		return null;
-	}
+	};
 	
 	//
 	//  instance functions
 	//
 	
-	function clone() {
+	var clone = function() {
 		return create(this._duration, this._endRect);
-	}
+	};
 	
-	function startWithTarget(target) {
+	var startWithTarget = function(target) {
 		cc.MaskTo.prototype.startWithTarget.call(this, target);
 		
 		var rect = this._endRect;
@@ -161,7 +161,7 @@
 		rect.setHeight(0);
 		
 		this._delta = rect;
-	}
+	};
 	
 	var prop = {
 		ctor: cc.MaskTo.prototype.ctor,

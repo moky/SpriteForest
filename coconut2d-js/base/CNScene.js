@@ -23,25 +23,25 @@
 	//
 	//  construtor
 	//
-	function Scene() {
+	var Scene = function() {
 		cc.Scene.prototype.ctor.call(this);
 		this._touchNodes = null;
 		this._allClaimedKeys = null;
-	}
+	};
 	
 	//
 	//  static functions
 	//
-	function create() {
+	var create = function() {
 		var node = new cn.Scene();
 		node.init();
 		return node;
-	}
+	};
 	
 	//
 	//  instance functions
 	//
-	function init() {
+	var init = function() {
 		if (!cc.Scene.prototype.init.call(this)) {
 			cn.error(this);
 			return false;
@@ -56,19 +56,19 @@
 		this._allClaimedKeys = [];
 		
 		return true;
-	}
+	};
 	
-	function onEnter() {
+	var onEnter = function() {
 		cc.Scene.prototype.onEnter.call(this);
 		cc.registerStandardDelegate(this, -1);
-	}
+	};
 	
-	function onExit() {
+	var onExit = function() {
 		cc.unregisterTouchDelegate(this);
 		cc.Scene.prototype.onExit.call(this);
-	}
+	};
 	
-	function perform(scene) {
+	var perform = function(scene) {
 		scene = scene || this;
 		var director = cc.Director.getInstance();
 		var old = director.getRunningScene();
@@ -83,37 +83,37 @@
 		} else {
 			director.runWithScene(scene);
 		}
-	}
+	};
 	
 	// protected:
-	function _object_key(node) {
+	var _object_key = function(node) {
 		if (!node._unique_id_for_object) {
 			node._unique_id_for_object = 'node-' + Math.random();
 		}
 		return node._unique_id_for_object;
-	}
+	};
 	
-	function addClaimedKey(key) {
+	var addClaimedKey = function(key) {
 		this._allClaimedKeys.push(key);
-	}
-	function removeClaimedKey(key) {
+	};
+	var removeClaimedKey = function(key) {
 		for (var i = this._allClaimedKeys.length - 1; i >= 0; --i) {
 			if (this._allClaimedKeys[i] == key) {
 				this._allClaimedKeys.splice(i, 1);
 			}
 		}
-	}
-	function isKeyClaimed(key) {
+	};
+	var isKeyClaimed = function(key) {
 		for (var i = this._allClaimedKeys.length - 1; i >= 0; --i) {
 			if (this._allClaimedKeys[i] == key) {
 				return false; // ???
 			}
 		}
 		return false;
-	}
+	};
 	
 	// public: for touch dispatching
-	function addTouchNode(node, delegate, maxTouches) {
+	var addTouchNode = function(node, delegate, maxTouches) {
 		if (maxTouches === undefined || maxTouches === null) {
 			maxTouches = -1;
 		}
@@ -132,8 +132,8 @@
 				obj.maxTouches = maxTouches;
 			}
 		}
-	}
-	function removeTouchNode(node) {
+	};
+	var removeTouchNode = function(node) {
 		for (var p = node; p; p = p.getParent()) {
 			var key = _object_key(node);
 			var obj = this._touchNodes[key];
@@ -144,15 +144,15 @@
 				}
 			}
 		}
-	}
+	};
 	
 	// protected:
-	function objectByNode(node) {
+	var objectByNode = function(node) {
 		var key = _object_key(node);
 		return this._touchNodes[key];
-	}
+	};
 	
-	function cnTouchObject(touch, event, touchType, touchObject) {
+	var cnTouchObject = function(touch, event, touchType, touchObject) {
 		var touchKey = _object_key(touch);
 		var claimedTouches = touchObject.claimedTouches;
 		
@@ -197,8 +197,8 @@
 		}
 		
 		return claimed;
-	}
-	function cnTouchNode(touch, event, touchType, node) {
+	};
+	var cnTouchNode = function(touch, event, touchType, node) {
 		var touchableCount = 0;
 		var obj = this.objectByNode(node);
 		if (obj) {
@@ -283,8 +283,8 @@
 		}
 		
 		return false;
-	}
-	function cnTouches(touches, event, touchType) {
+	};
+	var cnTouches = function(touches, event, touchType) {
 		var touch;
 		for (var i = 0; i < touches.length; ++i) {
 			touch = touches[i];
@@ -292,21 +292,21 @@
 				cn.log('nothing hit.');
 			}
 		}
-	}
+	};
 	
 	// public:
-	function onTouchesBegan(touches, event) {
+	var onTouchesBegan = function(touches, event) {
 		this.cnTouches(touches, event, cc.TOUCH_BEGAN);
-	}
-	function onTouchesMoved(touches, event) {
+	};
+	var onTouchesMoved = function(touches, event) {
 		this.cnTouches(touches, event, cc.TOUCH_MOVED);
-	}
-	function onTouchesEnded(touches, event) {
+	};
+	var onTouchesEnded = function(touches, event) {
 		this.cnTouches(touches, event, cc.TOUCH_ENDED);
-	}
-	function onTouchesCancelled(touches, event) {
+	};
+	var onTouchesCancelled = function(touches, event) {
 		this.cnTouches(touches, event, cc.TOUCH_CANCELLED);
-	}
+	};
 	
 	//--------------------------------------------------------------------------
 	

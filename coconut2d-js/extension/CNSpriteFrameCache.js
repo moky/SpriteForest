@@ -23,15 +23,15 @@
 	//
 	//  construtor
 	//
-	function SpriteFrameCache() {
+	var SpriteFrameCache = function() {
 		cc.SpriteFrameCache.prototype.ctor.call(this);
-	}
+	};
 	
 	//
 	//  static functions
 	//
 	
-	function loadTextureAndSprites(filePath) {
+	var loadTextureAndSprites = function(filePath) {
 		var frameCache = cc.SpriteFrameCache.getInstance();
 		
         var fileUtils = cc.FileUtils.getInstance();
@@ -66,7 +66,7 @@
 			}
 		}
 		return texture;
-	}
+	};
 	
 	//
 	//  instance functions
