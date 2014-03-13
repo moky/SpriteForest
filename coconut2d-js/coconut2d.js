@@ -31,7 +31,7 @@ Coconut2D.cc = Cocos2D;
 	cn.namespaces['CC'] = 'Cocos2D';
 	cn.namespaces['CN'] = 'Coconut2D';
 	
-	cn.version = 'Coconut-2D v1.0.0';
+	cn.version = 'Coconut2D-HTML5 v1.0.0';
 	
 	// utils
 	cn.log = cc.log;

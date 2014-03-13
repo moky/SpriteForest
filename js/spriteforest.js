@@ -30,6 +30,6 @@ SpriteForest.cn = Coconut2D;
 	// add namespaces
 	cn.namespaces['SF'] = 'SpriteForest';
 	
-	cn.version = 'SpriteForest v1.0.0';
+	sf.version = 'SpriteForest-HTML5 v1.0.0';
 	
 }(SpriteForest);
